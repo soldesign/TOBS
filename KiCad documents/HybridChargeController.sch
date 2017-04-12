@@ -28,6 +28,7 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
+LIBS:arduinouno
 LIBS:HybridChargeController-cache
 EELAYER 25 0
 EELAYER END
@@ -66,21 +67,11 @@ F 3 "" H 2200 4400 50  0000 C CNN
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	2600 3850 3000 3850
+	2600 3850 3450 3850
 Wire Wire Line
-	3000 3850 3450 3850
+	3000 3250 3000 3950
 Wire Wire Line
-	3000 3250 3000 3850
-Wire Wire Line
-	3000 3850 3000 3950
-Wire Wire Line
-	1050 4750 1550 4750
-Wire Wire Line
-	1550 4750 2200 4750
-Wire Wire Line
-	2200 4750 3000 4750
-Wire Wire Line
-	3000 4750 3700 4750
+	1050 4750 3700 4750
 Text Label 1050 4750 2    60   ~ 0
 GND
 Text Label 3700 4750 0    60   ~ 0
@@ -92,9 +83,7 @@ Wire Wire Line
 	2200 4550 2200 4750
 Connection ~ 2200 4750
 Wire Wire Line
-	2000 4150 2200 4150
-Wire Wire Line
-	2200 4150 2700 4150
+	2000 4150 2700 4150
 Wire Wire Line
 	2200 4150 2200 4250
 Connection ~ 2200 4150
@@ -107,11 +96,7 @@ COM+
 Wire Wire Line
 	2300 3550 2300 3900
 Wire Wire Line
-	1450 3550 1550 3550
-Wire Wire Line
-	1550 3550 2300 3550
-Wire Wire Line
-	2300 3550 3250 3550
+	1450 3550 3250 3550
 Connection ~ 2300 3550
 Text Label 1050 3550 2    60   ~ 0
 LA+
@@ -148,19 +133,11 @@ F 3 "" H 1500 1950 50  0000 C CNN
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	2150 1400 2300 1400
+	2150 1400 2750 1400
 Wire Wire Line
-	2300 1400 2750 1400
+	2300 800  2300 1500
 Wire Wire Line
-	2300 800  2300 1400
-Wire Wire Line
-	2300 1400 2300 1500
-Wire Wire Line
-	1200 2300 1500 2300
-Wire Wire Line
-	1500 2300 2300 2300
-Wire Wire Line
-	2300 2300 3000 2300
+	1200 2300 3000 2300
 Text Label 1200 2300 2    60   ~ 0
 GND
 Text Label 3000 2300 0    60   ~ 0
@@ -172,9 +149,7 @@ Wire Wire Line
 	1500 2100 1500 2300
 Connection ~ 1500 2300
 Wire Wire Line
-	1300 1700 1500 1700
-Wire Wire Line
-	1500 1700 2000 1700
+	1300 1700 2000 1700
 Wire Wire Line
 	1500 1700 1500 1800
 Connection ~ 1500 1700
@@ -187,9 +162,7 @@ COM+
 Wire Wire Line
 	1850 1400 1850 1100
 Wire Wire Line
-	1750 1100 1850 1100
-Wire Wire Line
-	1850 1100 2550 1100
+	1750 1100 2550 1100
 Connection ~ 1850 1100
 Text Label 1150 1100 2    60   ~ 0
 LI+
@@ -218,9 +191,7 @@ Wire Wire Line
 	1550 3550 1550 3650
 Connection ~ 1550 3550
 Wire Wire Line
-	1550 3950 1550 4000
-Wire Wire Line
-	1550 4000 1550 4100
+	1550 3950 1550 4100
 Wire Wire Line
 	1550 4000 2000 4000
 Wire Wire Line
@@ -363,15 +334,9 @@ F 3 "" H 4900 1950 50  0000 C CNN
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	5550 1400 5700 1400
+	5550 1400 6150 1400
 Wire Wire Line
-	5700 1400 6150 1400
-Wire Wire Line
-	4600 2300 4900 2300
-Wire Wire Line
-	4900 2300 5700 2300
-Wire Wire Line
-	5700 2300 6400 2300
+	4600 2300 6400 2300
 Text Label 4600 2300 2    60   ~ 0
 GND
 Text Label 6400 2300 0    60   ~ 0
@@ -383,14 +348,12 @@ Wire Wire Line
 	4900 2100 4900 2300
 Connection ~ 4900 2300
 Wire Wire Line
-	4700 1700 4900 1700
-Wire Wire Line
-	4900 1700 5400 1700
+	4700 1700 5400 1700
 Wire Wire Line
 	4900 1700 4900 1800
 Connection ~ 4900 1700
 Text Label 4400 1700 2    60   ~ 0
-SW_LOAD
+SW_LD
 Wire Wire Line
 	6350 1100 6650 1100
 Text Label 4550 1100 2    60   ~ 0
@@ -398,9 +361,7 @@ COM+
 Wire Wire Line
 	5250 1400 5250 1100
 Wire Wire Line
-	5150 1100 5250 1100
-Wire Wire Line
-	5250 1100 5950 1100
+	5150 1100 5950 1100
 Connection ~ 5250 1100
 Text Label 6650 1100 0    60   ~ 0
 LOAD+
@@ -465,4 +426,61 @@ F 3 "" H 5000 1100 50  0000 C CNN
 $EndComp
 Text Notes 4750 1250 0    60   ~ 0
 ????
+$Comp
+L ArduinoUno AU?
+U 1 1 58EE210F
+P 8200 1700
+F 0 "AU?" H 8900 1850 60  0000 C CNN
+F 1 "Uno Layout" H 9650 1650 60  0000 C CNN
+F 2 "" H 8200 1700 60  0001 C CNN
+F 3 "" H 8200 1700 60  0001 C CNN
+	1    8200 1700
+	1    0    0    -1  
+$EndComp
+Text Label 9100 1000 1    60   ~ 0
+GND
+Text Label 9700 2550 3    60   ~ 0
+GND
+Text Label 9800 2550 3    60   ~ 0
+GND
+Text Label 10600 1000 1    60   ~ 0
+RX
+Text Label 10500 1000 1    60   ~ 0
+TX
+Text Label 10400 1000 1    60   ~ 0
+SSRX
+Text Label 10300 1000 1    60   ~ 0
+SSTX
+Text Label 10200 1000 1    60   ~ 0
+SIM_PWR
+Text Label 10100 1000 1    60   ~ 0
+LED_BTN
+Text Label 9500 1000 1    60   ~ 0
+SS
+Text Label 9400 1000 1    60   ~ 0
+MOSI
+Text Label 9300 1000 1    60   ~ 0
+MISO
+Text Label 9200 1000 1    60   ~ 0
+SCK
+Text Label 10000 1000 1    60   ~ 0
+SW_LA
+Text Label 9900 1000 1    60   ~ 0
+SW_LI
+Text Label 9700 1000 1    60   ~ 0
+SW_LD
+Text Label 9400 2550 3    60   ~ 0
+RST
+Text Label 10600 2550 3    60   ~ 0
+S_LA_V
+Text Label 10500 2550 3    60   ~ 0
+S_LA_I
+Text Label 10400 2550 3    60   ~ 0
+S_LI_V
+Text Label 10300 2550 3    60   ~ 0
+S_LI_I
+Text Label 10200 2550 3    60   ~ 0
+S_LD_V
+Text Label 10100 2550 3    60   ~ 0
+S_LD_I
 $EndSCHEMATC
