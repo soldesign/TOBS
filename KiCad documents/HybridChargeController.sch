@@ -595,7 +595,7 @@ F 3 "" H 5550 8850 50  0000 C CNN
 	0    -1   1    0   
 $EndComp
 Text Notes 4000 6100 0    60   ~ 0
-Voltage-Current-Sensor Load
+(Voltage)-Current-Sensor Load
 $Comp
 L C C?
 U 1 1 58EFF963
@@ -1285,4 +1285,30 @@ Wire Wire Line
 	5700 3550 6550 3550
 Text Notes 7300 7000 0    60   ~ 0
 This R needs to be low. 47k doesnt work
+Text Notes 700  11050 0    139  ~ 28
+LI = Li-Ion\nLA = Lead-Acid
+Text Notes 13650 1850 0    60   Italic 0
+15A too big for LI?
+Text Notes 12400 2200 3    60   Italic 0
+make this a Schottky
+Text Notes 13400 2400 0    60   Italic 0
+add a thermal fuse physically  close to the lifepo?\n
+Text Notes 2150 3100 0    60   Italic 0
+sized for which max. current?
+Text Notes 3000 4800 0    60   Italic 0
+I_Q = 1mA
+Text Notes 5800 8100 0    60   Italic 0
+I_Q = 1mA
+Text Notes 6300 4200 0    60   Italic 0
+whats the max. switching freuqency possible here? \nIt will  have to apply PWM charge-controlling?
+Text Notes 1500 6500 0    60   Italic 0
+Schottky? Mosfet? Nothing?
+Text Notes 7650 10950 0    139  Italic 0
+open:\n- reverse polarity all ports?\n- short-circuit protection all ports?\n- overvoltage?
+Text Notes 13000 7000 0    99   Italic 0
+where is the LiFePo-IC?
+Text Notes 10600 3350 0    60   Italic 0
+how big? elko? footprint? ;-)
+Text Notes 4150 1550 0    60   Italic 0
+no voltage/current sensor for LI?
 $EndSCHEMATC
