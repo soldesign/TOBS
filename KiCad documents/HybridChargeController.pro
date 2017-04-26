@@ -1,4 +1,4 @@
-update=21.04.2017 16:40:19
+update=26.04.2017 12:41:47
 version=1
 last_client=kicad
 [pcbnew]
@@ -58,5 +58,6 @@ LibName28=contrib
 LibName29=valves
 LibName30=Libraries/arduinouno
 LibName31=Libraries/bq76920
+LibName32=Libraries/cd4051
 [general]
 version=1

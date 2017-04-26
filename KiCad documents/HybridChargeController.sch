@@ -30,6 +30,7 @@ LIBS:contrib
 LIBS:valves
 LIBS:arduinouno
 LIBS:bq76920
+LIBS:cd4051
 LIBS:HybridChargeController-cache
 EELAYER 25 0
 EELAYER END
@@ -266,15 +267,15 @@ Text Label 7200 7250 1    60   ~ 0
 SW_LD
 Text Label 6700 8800 3    60   ~ 0
 RST
-Text Label 8550 8800 3    60   ~ 0
+Text Label 7000 3250 2    60   ~ 0
 S_LA_V
-Text Label 8450 8800 3    60   ~ 0
+Text Label 7850 3050 0    60   ~ 0
 S_LA_I
-Text Label 8300 8800 3    60   ~ 0
+Text Label 7850 2950 0    60   ~ 0
 S_PV_V
-Text Label 8200 8800 3    60   ~ 0
+Text Label 7850 3250 0    60   ~ 0
 S_PV_I
-Text Label 8100 8800 3    60   ~ 0
+Text Label 7000 2850 2    60   ~ 0
 S_LD_I
 Text Label 1450 4700 2    60   ~ 0
 LA+
@@ -845,8 +846,6 @@ Text Notes 3000 6250 0    60   Italic 0
 I_Q = 1mA
 Text Notes 5650 2700 0    60   Italic 0
 I_Q = 1mA
-Text Notes 6300 5650 0    60   Italic 0
-whats the max. switching freuqency possible here? \nIt will  have to apply PWM charge-controlling?
 Text Notes 1350 1100 0    60   Italic 0
 Schottky? Mosfet? Nothing?
 Text Notes 7600 11050 0    139  Italic 0
@@ -1120,6 +1119,173 @@ F 3 "" H 4300 9900 50  0000 C CNN
 	1    4300 9900
 	0    -1   -1   0   
 $EndComp
+$Comp
+L Q_NMOS_DGS Q?
+U 1 1 58FD0019
+P 4000 9350
+F 0 "Q?" H 4300 9400 50  0000 R CNN
+F 1 "N FET cheap" H 4650 9300 50  0000 R CNN
+F 2 "" H 4200 9450 50  0000 C CNN
+F 3 "" H 4000 9350 50  0000 C CNN
+	1    4000 9350
+	1    0    0    -1  
+$EndComp
+Text Label 3550 9350 0    60   ~ 0
+GND
+Text Label 4100 9000 0    60   ~ 0
+CHG
+Text Label 2550 7900 2    60   ~ 0
+CHG
+Text Label 2550 8000 2    60   ~ 0
+GND
+$Comp
+L C_Small C?
+U 1 1 58FD76E9
+P 2050 8900
+F 0 "C?" H 2060 8970 50  0000 L CNN
+F 1 "1µ" H 2060 8820 50  0000 L CNN
+F 2 "" H 2050 8900 50  0000 C CNN
+F 3 "" H 2050 8900 50  0000 C CNN
+	1    2050 8900
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 58FD8BD8
+P 1800 8700
+F 0 "R?" V 1880 8700 50  0000 C CNN
+F 1 "Rf" V 1800 8700 50  0000 C CNN
+F 2 "" V 1730 8700 50  0000 C CNN
+F 3 "" H 1800 8700 50  0000 C CNN
+	1    1800 8700
+	0    1    1    0   
+$EndComp
+Text Label 1500 8700 2    60   ~ 0
+LI+
+$Comp
+L C_Small C?
+U 1 1 58FDABE8
+P 2450 8900
+F 0 "C?" H 2460 8970 50  0000 L CNN
+F 1 "Cf" H 2460 8820 50  0000 L CNN
+F 2 "" H 2450 8900 50  0000 C CNN
+F 3 "" H 2450 8900 50  0000 C CNN
+	1    2450 8900
+	1    0    0    -1  
+$EndComp
+Text Label 2450 9200 0    60   ~ 0
+GND
+Text Notes 1700 9000 0    60   ~ 0
+SIZE?\nRf, Cf
+$Comp
+L C_Small C?
+U 1 1 58FDE58E
+P 2250 8900
+F 0 "C?" H 2260 8970 50  0000 L CNN
+F 1 "1µ" H 2260 8820 50  0000 L CNN
+F 2 "" H 2250 8900 50  0000 C CNN
+F 3 "" H 2250 8900 50  0000 C CNN
+	1    2250 8900
+	1    0    0    -1  
+$EndComp
+NoConn ~ 2550 8500
+Text Label 1750 8300 2    60   ~ 0
+VC1
+$Comp
+L R R?
+U 1 1 58FE3494
+P 1900 8300
+F 0 "R?" V 1980 8300 50  0000 C CNN
+F 1 "10k" V 1900 8300 50  0000 C CNN
+F 2 "" V 1830 8300 50  0000 C CNN
+F 3 "" H 1900 8300 50  0000 C CNN
+	1    1900 8300
+	0    1    1    0   
+$EndComp
+$Comp
+L R R?
+U 1 1 58FE4887
+P 2100 8100
+F 0 "R?" V 2180 8100 50  0000 C CNN
+F 1 "10k" V 2100 8100 50  0000 C CNN
+F 2 "" V 2030 8100 50  0000 C CNN
+F 3 "" H 2100 8100 50  0000 C CNN
+	1    2100 8100
+	-1   0    0    1   
+$EndComp
+Text Label 2100 7950 0    60   ~ 0
+GND
+Text Label 3800 7900 0    60   ~ 0
+SRN
+Text Label 3800 8000 0    60   ~ 0
+SRP
+$Comp
+L R R?
+U 1 1 58FE70F5
+P 2200 10550
+F 0 "R?" V 2280 10550 50  0000 C CNN
+F 1 "100" V 2200 10550 50  0000 C CNN
+F 2 "" V 2130 10550 50  0000 C CNN
+F 3 "" H 2200 10550 50  0000 C CNN
+	1    2200 10550
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R?
+U 1 1 58FE758B
+P 2600 10550
+F 0 "R?" V 2680 10550 50  0000 C CNN
+F 1 "100" V 2600 10550 50  0000 C CNN
+F 2 "" V 2530 10550 50  0000 C CNN
+F 3 "" H 2600 10550 50  0000 C CNN
+	1    2600 10550
+	-1   0    0    1   
+$EndComp
+$Comp
+L C_Small C?
+U 1 1 58FE842D
+P 2000 10200
+F 0 "C?" H 2010 10270 50  0000 L CNN
+F 1 "0,1µ" H 2010 10120 50  0000 L CNN
+F 2 "" H 2000 10200 50  0000 C CNN
+F 3 "" H 2000 10200 50  0000 C CNN
+	1    2000 10200
+	1    0    0    -1  
+$EndComp
+Text Label 2200 9800 0    60   ~ 0
+SRP
+Text Label 2600 9800 0    60   ~ 0
+SRN
+$Comp
+L C_Small C?
+U 1 1 58FE935F
+P 2400 10050
+F 0 "C?" H 2410 10120 50  0000 L CNN
+F 1 "0,1µ" H 2410 9970 50  0000 L CNN
+F 2 "" H 2400 10050 50  0000 C CNN
+F 3 "" H 2400 10050 50  0000 C CNN
+	1    2400 10050
+	0    1    1    0   
+$EndComp
+$Comp
+L C_Small C?
+U 1 1 58FE9497
+P 2750 10200
+F 0 "C?" H 2760 10270 50  0000 L CNN
+F 1 "0,1µ" H 2760 10120 50  0000 L CNN
+F 2 "" H 2750 10200 50  0000 C CNN
+F 3 "" H 2750 10200 50  0000 C CNN
+	1    2750 10200
+	1    0    0    -1  
+$EndComp
+Text Label 2000 10300 3    60   ~ 0
+GND
+Text Label 2750 10300 3    60   ~ 0
+GND
+Text Notes 600  7500 0    60   ~ 0
+LI (dis-)charge, balance, monitor IC
+Text Label 6900 3450 2    60   ~ 0
+GND
 Wire Wire Line
 	7750 1150 7850 1150
 Wire Wire Line
@@ -1661,21 +1827,8 @@ Wire Wire Line
 Wire Wire Line
 	4000 10150 4300 10150
 Connection ~ 4300 10150
-$Comp
-L Q_NMOS_DGS Q?
-U 1 1 58FD0019
-P 4000 9350
-F 0 "Q?" H 4300 9400 50  0000 R CNN
-F 1 "N FET cheap" H 4650 9300 50  0000 R CNN
-F 2 "" H 4200 9450 50  0000 C CNN
-F 3 "" H 4000 9350 50  0000 C CNN
-	1    4000 9350
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	3800 9350 3550 9350
-Text Label 3550 9350 0    60   ~ 0
-GND
 Wire Wire Line
 	4300 9650 4300 9750
 Wire Wire Line
@@ -1689,53 +1842,12 @@ Wire Wire Line
 Connection ~ 4100 9650
 Wire Wire Line
 	4100 9150 4100 9000
-Text Label 4100 9000 0    60   ~ 0
-CHG
-Text Label 2550 7900 2    60   ~ 0
-CHG
-Text Label 2550 8000 2    60   ~ 0
-GND
-$Comp
-L C_Small C?
-U 1 1 58FD76E9
-P 2050 8900
-F 0 "C?" H 2060 8970 50  0000 L CNN
-F 1 "1µ" H 2060 8820 50  0000 L CNN
-F 2 "" H 2050 8900 50  0000 C CNN
-F 3 "" H 2050 8900 50  0000 C CNN
-	1    2050 8900
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	2550 8400 2050 8400
-$Comp
-L R R?
-U 1 1 58FD8BD8
-P 1800 8700
-F 0 "R?" V 1880 8700 50  0000 C CNN
-F 1 "Rf" V 1800 8700 50  0000 C CNN
-F 2 "" V 1730 8700 50  0000 C CNN
-F 3 "" H 1800 8700 50  0000 C CNN
-	1    1800 8700
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	1950 8700 2450 8700
 Wire Wire Line
 	2450 8700 2550 8700
-Text Label 1500 8700 2    60   ~ 0
-LI+
-$Comp
-L C_Small C?
-U 1 1 58FDABE8
-P 2450 8900
-F 0 "C?" H 2460 8970 50  0000 L CNN
-F 1 "Cf" H 2460 8820 50  0000 L CNN
-F 2 "" H 2450 8900 50  0000 C CNN
-F 3 "" H 2450 8900 50  0000 C CNN
-	1    2450 8900
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	2450 8700 2450 8800
 Connection ~ 2450 8700
@@ -1743,28 +1855,12 @@ Wire Wire Line
 	2450 9000 2450 9100
 Wire Wire Line
 	2450 9100 2450 9200
-Text Label 2450 9200 0    60   ~ 0
-GND
-Text Notes 1700 9000 0    60   ~ 0
-SIZE?\nRf, Cf
 Wire Wire Line
 	1550 8600 2250 8600
 Wire Wire Line
 	2250 8600 2550 8600
 Wire Wire Line
 	2250 8600 2250 8800
-$Comp
-L C_Small C?
-U 1 1 58FDE58E
-P 2250 8900
-F 0 "C?" H 2260 8970 50  0000 L CNN
-F 1 "1µ" H 2260 8820 50  0000 L CNN
-F 2 "" H 2250 8900 50  0000 C CNN
-F 3 "" H 2250 8900 50  0000 C CNN
-	1    2250 8900
-	1    0    0    -1  
-$EndComp
-NoConn ~ 2550 8500
 Wire Wire Line
 	2050 8400 2050 8800
 Wire Wire Line
@@ -1785,86 +1881,19 @@ Wire Wire Line
 	1550 8700 1650 8700
 Connection ~ 2250 8600
 Connection ~ 1550 8700
-Text Label 1750 8300 2    60   ~ 0
-VC1
-$Comp
-L R R?
-U 1 1 58FE3494
-P 1900 8300
-F 0 "R?" V 1980 8300 50  0000 C CNN
-F 1 "10k" V 1900 8300 50  0000 C CNN
-F 2 "" V 1830 8300 50  0000 C CNN
-F 3 "" H 1900 8300 50  0000 C CNN
-	1    1900 8300
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	2050 8300 2100 8300
 Wire Wire Line
 	2100 8300 2550 8300
-$Comp
-L R R?
-U 1 1 58FE4887
-P 2100 8100
-F 0 "R?" V 2180 8100 50  0000 C CNN
-F 1 "10k" V 2100 8100 50  0000 C CNN
-F 2 "" V 2030 8100 50  0000 C CNN
-F 3 "" H 2100 8100 50  0000 C CNN
-	1    2100 8100
-	-1   0    0    1   
-$EndComp
 Wire Wire Line
 	2100 8250 2100 8300
 Connection ~ 2100 8300
-Text Label 2100 7950 0    60   ~ 0
-GND
-Text Label 3800 7900 0    60   ~ 0
-SRN
-Text Label 3800 8000 0    60   ~ 0
-SRP
-$Comp
-L R R?
-U 1 1 58FE70F5
-P 2200 10550
-F 0 "R?" V 2280 10550 50  0000 C CNN
-F 1 "100" V 2200 10550 50  0000 C CNN
-F 2 "" V 2130 10550 50  0000 C CNN
-F 3 "" H 2200 10550 50  0000 C CNN
-	1    2200 10550
-	-1   0    0    1   
-$EndComp
-$Comp
-L R R?
-U 1 1 58FE758B
-P 2600 10550
-F 0 "R?" V 2680 10550 50  0000 C CNN
-F 1 "100" V 2600 10550 50  0000 C CNN
-F 2 "" V 2530 10550 50  0000 C CNN
-F 3 "" H 2600 10550 50  0000 C CNN
-	1    2600 10550
-	-1   0    0    1   
-$EndComp
 Wire Wire Line
 	2200 10700 2200 10850
 Connection ~ 2200 10850
 Wire Wire Line
 	2600 10700 2600 10850
 Connection ~ 2600 10850
-$Comp
-L C_Small C?
-U 1 1 58FE842D
-P 2000 10200
-F 0 "C?" H 2010 10270 50  0000 L CNN
-F 1 "0,1µ" H 2010 10120 50  0000 L CNN
-F 2 "" H 2000 10200 50  0000 C CNN
-F 3 "" H 2000 10200 50  0000 C CNN
-	1    2000 10200
-	1    0    0    -1  
-$EndComp
-Text Label 2200 9800 0    60   ~ 0
-SRP
-Text Label 2600 9800 0    60   ~ 0
-SRN
 Wire Wire Line
 	2200 9800 2200 10050
 Wire Wire Line
@@ -1883,36 +1912,10 @@ Wire Wire Line
 Wire Wire Line
 	2600 10050 2600 10400
 Connection ~ 2600 10050
-$Comp
-L C_Small C?
-U 1 1 58FE935F
-P 2400 10050
-F 0 "C?" H 2410 10120 50  0000 L CNN
-F 1 "0,1µ" H 2410 9970 50  0000 L CNN
-F 2 "" H 2400 10050 50  0000 C CNN
-F 3 "" H 2400 10050 50  0000 C CNN
-	1    2400 10050
-	0    1    1    0   
-$EndComp
-$Comp
-L C_Small C?
-U 1 1 58FE9497
-P 2750 10200
-F 0 "C?" H 2760 10270 50  0000 L CNN
-F 1 "0,1µ" H 2760 10120 50  0000 L CNN
-F 2 "" H 2750 10200 50  0000 C CNN
-F 3 "" H 2750 10200 50  0000 C CNN
-	1    2750 10200
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	2000 10050 2000 10100
-Text Label 2000 10300 3    60   ~ 0
-GND
 Wire Wire Line
 	2750 10050 2750 10100
-Text Label 2750 10300 3    60   ~ 0
-GND
 Wire Notes Line
 	550  7400 550  11200
 Wire Notes Line
@@ -1921,6 +1924,59 @@ Wire Notes Line
 	5350 7400 5350 11200
 Wire Notes Line
 	5350 11200 550  11200
-Text Notes 600  7500 0    60   ~ 0
-LI (dis-)charge, balance, monitor IC
+Text Label 7850 2850 0    60   ~ 0
+5V
+Text Label 7850 3550 0    60   ~ 0
+MplexC
+Text Label 7850 3450 0    60   ~ 0
+MplexB
+Text Label 7850 3350 0    60   ~ 0
+MplexA
+Text Label 7700 8800 3    60   ~ 0
+MplexC
+Text Label 7800 8800 3    60   ~ 0
+MplexB
+Text Label 7900 8800 3    60   ~ 0
+MplexA
+Text Label 7600 8800 3    60   ~ 0
+MplexOut
+Text Label 7000 3050 2    60   ~ 0
+MplexOut
+$Comp
+L cd4051 U?
+U 1 1 5901577D
+P 7450 2700
+F 0 "U?" H 7400 2750 60  0000 C CNN
+F 1 "cd4051" H 7450 2650 60  0000 C CNN
+F 2 "" H 7450 2700 60  0001 C CNN
+F 3 "" H 7450 2700 60  0001 C CNN
+	1    7450 2700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7000 3350 6950 3350
+Wire Wire Line
+	6950 3350 6950 3450
+Wire Wire Line
+	6950 3450 6950 3550
+Wire Wire Line
+	6900 3450 6950 3450
+Wire Wire Line
+	6950 3450 7000 3450
+Wire Wire Line
+	6950 3550 7000 3550
+Connection ~ 6950 3450
+Text Notes 6800 3700 0    60   ~ 0
+INH(ibit) can reduce consumption
+NoConn ~ 7850 3150
+Wire Notes Line
+	6450 2550 6450 3750
+Wire Notes Line
+	6450 3750 8400 3750
+Wire Notes Line
+	8400 3750 8400 2550
+Wire Notes Line
+	8400 2550 6450 2550
+Text Notes 6500 2650 0    60   ~ 0
+Multiplexer
 $EndSCHEMATC
