@@ -408,12 +408,12 @@ $EndComp
 $Comp
 L FUSE F?
 U 1 1 58EF7BBC
-P 9300 8150
-F 0 "F?" H 9400 8200 50  0000 C CNN
-F 1 "15A" H 9200 8100 50  0000 C CNN
-F 2 "" H 9300 8150 50  0000 C CNN
-F 3 "" H 9300 8150 50  0000 C CNN
-	1    9300 8150
+P 10450 8200
+F 0 "F?" H 10550 8250 50  0000 C CNN
+F 1 "15A" H 10350 8150 50  0000 C CNN
+F 2 "" H 10450 8200 50  0000 C CNN
+F 3 "" H 10450 8200 50  0000 C CNN
+	1    10450 8200
 	0    1    1    0   
 $EndComp
 Text Notes 700  4150 0    60   ~ 0
@@ -673,89 +673,89 @@ GND
 $Comp
 L CONN_01X02 P?
 U 1 1 58F06514
-P 8500 7600
-F 0 "P?" H 8500 7750 50  0000 C CNN
-F 1 "Load" V 8600 7600 50  0000 C CNN
-F 2 "" H 8500 7600 50  0000 C CNN
-F 3 "" H 8500 7600 50  0000 C CNN
-	1    8500 7600
+P 8550 7650
+F 0 "P?" H 8550 7800 50  0000 C CNN
+F 1 "Load" V 8650 7650 50  0000 C CNN
+F 2 "" H 8550 7650 50  0000 C CNN
+F 3 "" H 8550 7650 50  0000 C CNN
+	1    8550 7650
 	0    -1   -1   0   
 $EndComp
 $Comp
 L CONN_01X02 P?
 U 1 1 58F06CBD
-P 9000 7600
-F 0 "P?" H 9000 7750 50  0000 C CNN
-F 1 "PV" V 9100 7600 50  0000 C CNN
-F 2 "" H 9000 7600 50  0000 C CNN
-F 3 "" H 9000 7600 50  0000 C CNN
-	1    9000 7600
+P 9000 7650
+F 0 "P?" H 9000 7800 50  0000 C CNN
+F 1 "PV" V 9100 7650 50  0000 C CNN
+F 2 "" H 9000 7650 50  0000 C CNN
+F 3 "" H 9000 7650 50  0000 C CNN
+	1    9000 7650
 	0    -1   -1   0   
 $EndComp
 $Comp
 L CONN_01X02 P?
 U 1 1 58F07029
-P 9450 7600
-F 0 "P?" H 9450 7750 50  0000 C CNN
-F 1 "LA" V 9550 7600 50  0000 C CNN
-F 2 "" H 9450 7600 50  0000 C CNN
-F 3 "" H 9450 7600 50  0000 C CNN
-	1    9450 7600
+P 10250 7650
+F 0 "P?" H 10250 7800 50  0000 C CNN
+F 1 "LA" V 10350 7650 50  0000 C CNN
+F 2 "" H 10250 7650 50  0000 C CNN
+F 3 "" H 10250 7650 50  0000 C CNN
+	1    10250 7650
 	0    -1   -1   0   
 $EndComp
 $Comp
 L CONN_01X02 P?
 U 1 1 58F071A8
-P 9850 7600
-F 0 "P?" H 9850 7750 50  0000 C CNN
-F 1 "LI" V 9950 7600 50  0000 C CNN
-F 2 "" H 9850 7600 50  0000 C CNN
-F 3 "" H 9850 7600 50  0000 C CNN
-	1    9850 7600
+P 9400 7650
+F 0 "P?" H 9400 7800 50  0000 C CNN
+F 1 "LI" V 9500 7650 50  0000 C CNN
+F 2 "" H 9400 7650 50  0000 C CNN
+F 3 "" H 9400 7650 50  0000 C CNN
+	1    9400 7650
 	0    -1   -1   0   
 $EndComp
-Text Label 8550 7800 3    60   ~ 0
+Text Label 8600 7850 3    60   ~ 0
 LOAD-
-Text Label 8450 7800 3    60   ~ 0
+Text Label 8500 7850 3    60   ~ 0
 LOAD+
-Text Label 9050 7800 3    60   ~ 0
+Text Label 9050 7850 3    60   ~ 0
 PV-
-Text Label 9500 7800 3    60   ~ 0
+Text Label 10150 9050 3    60   ~ 0
 LA-
-Text Label 9900 7800 3    60   ~ 0
+Text Label 9300 9050 3    60   ~ 0
 LI-
-Text Label 8950 8400 3    60   ~ 0
+Text Label 8950 8450 3    60   ~ 0
 PV+
-Text Label 9300 8400 3    60   ~ 0
+Text Label 10450 9050 3    60   ~ 0
 LA+
-Text Label 9700 8400 3    60   ~ 0
+Text Label 9600 9050 3    60   ~ 0
 LI+
 $Comp
 L FUSE F?
 U 1 1 58F09BC6
-P 9700 8150
-F 0 "F?" H 9800 8200 50  0000 C CNN
-F 1 "15A" H 9600 8100 50  0000 C CNN
-F 2 "" H 9700 8150 50  0000 C CNN
-F 3 "" H 9700 8150 50  0000 C CNN
-	1    9700 8150
+P 9600 8200
+F 0 "F?" H 9700 8250 50  0000 C CNN
+F 1 "15A" H 9500 8150 50  0000 C CNN
+F 2 "" H 9600 8200 50  0000 C CNN
+F 3 "" H 9600 8200 50  0000 C CNN
+	1    9600 8200
 	0    1    1    0   
 $EndComp
 $Comp
 L D D?
 U 1 1 58F0B98B
-P 8950 8250
-F 0 "D?" H 8950 8350 50  0000 C CNN
-F 1 "D" H 8950 8150 50  0000 C CNN
-F 2 "" H 8950 8250 50  0000 C CNN
-F 3 "" H 8950 8250 50  0000 C CNN
-	1    8950 8250
+P 8950 8300
+F 0 "D?" H 8950 8400 50  0000 C CNN
+F 1 "D" H 8950 8200 50  0000 C CNN
+F 2 "" H 8950 8300 50  0000 C CNN
+F 3 "" H 8950 8300 50  0000 C CNN
+	1    8950 8300
 	0    -1   -1   0   
 $EndComp
 Text Notes 9550 700  0    60   ~ 0
 Voltage-current-sensor PV
 Text Notes 5950 6700 0    60   ~ 0
-Connectors
+Connectors & Protection
 $Comp
 L R R?
 U 1 1 58EE8414
@@ -834,10 +834,8 @@ Text Notes 7100 1500 0    60   ~ 0
 This R needs to be low. 47k doesnt work
 Text Notes 5650 10900 0    139  ~ 28
 LI = Li-Ion\nLA = Lead-Acid
-Text Notes 8000 7150 0    60   Italic 0
-15A too big for LI?
-Text Notes 8800 8300 3    60   Italic 0
-make this a Schottky
+Text Notes 8800 8450 0    60   Italic 0
+Schottky
 Text Notes 8050 6950 0    60   Italic 0
 add a thermal fuse physically  close to the lifepo?\n
 Text Notes 2150 4550 0    60   Italic 0
@@ -850,24 +848,22 @@ Text Notes 1350 1100 0    60   Italic 0
 Schottky? Mosfet? Nothing?
 Text Notes 7600 11050 0    139  Italic 0
 open:\n- reverse polarity all ports?\n- short-circuit protection all ports?\n- overvoltage?
-Text Notes 7000 9450 0    60   Italic 0
-how big? elko? footprint? ;-)
 $Comp
 L CONN_01X03 P?
 U 1 1 58FA50AC
-P 10250 7600
-F 0 "P?" H 10250 7800 50  0000 C CNN
-F 1 "LI_balancer" V 10350 7600 50  0000 C CNN
-F 2 "" H 10250 7600 50  0000 C CNN
-F 3 "" H 10250 7600 50  0000 C CNN
-	1    10250 7600
+P 8750 8950
+F 0 "P?" H 8750 9150 50  0000 C CNN
+F 1 "LI_balancer" V 8850 8950 50  0000 C CNN
+F 2 "" H 8750 8950 50  0000 C CNN
+F 3 "" H 8750 8950 50  0000 C CNN
+	1    8750 8950
 	0    -1   -1   0   
 $EndComp
-Text Label 10150 7800 3    60   ~ 0
+Text Label 8650 9150 3    60   ~ 0
 Cell12
-Text Label 10250 7800 3    60   ~ 0
+Text Label 8750 9150 3    60   ~ 0
 Cell23
-Text Label 10350 7800 3    60   ~ 0
+Text Label 8850 9150 3    60   ~ 0
 Cell34
 $Comp
 L bq76920 U?
@@ -1324,11 +1320,11 @@ Wire Wire Line
 Wire Wire Line
 	8300 1450 8550 1450
 Wire Notes Line
-	10600 6600 5900 6600
+	11100 6600 5900 6600
 Wire Notes Line
-	10600 10100 10600 6600
+	11100 10100 11100 6600
 Wire Notes Line
-	5900 10100 10600 10100
+	5900 10100 11100 10100
 Wire Notes Line
 	5900 6600 5900 10100
 Wire Notes Line
@@ -1340,15 +1336,15 @@ Wire Notes Line
 Wire Notes Line
 	9400 600  12050 600 
 Wire Wire Line
-	8950 7800 8950 8100
+	8950 7850 8950 8150
 Wire Wire Line
-	9800 7900 9700 7900
+	9450 7950 9600 7950
 Wire Wire Line
-	9800 7800 9800 7900
+	9450 7850 9450 7950
 Wire Wire Line
-	9400 7900 9300 7900
+	10300 7950 10450 7950
 Wire Wire Line
-	9400 7800 9400 7900
+	10300 7850 10300 7950
 Wire Wire Line
 	8750 1150 9800 1150
 Wire Wire Line
@@ -1979,4 +1975,108 @@ Wire Notes Line
 	8400 2550 6450 2550
 Text Notes 6500 2650 0    60   ~ 0
 Multiplexer
+$Comp
+L Q_PMOS_DGS Q?
+U 1 1 5901ED53
+P 10350 8750
+F 0 "Q?" H 10600 8750 50  0000 R CNN
+F 1 "Q_PMOS_DGS" H 10700 8600 50  0000 R CNN
+F 2 "" H 10550 8850 50  0000 C CNN
+F 3 "" H 10350 8750 50  0000 C CNN
+	1    10350 8750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10450 8450 10450 8500
+Wire Wire Line
+	10450 8500 10450 8550
+Wire Wire Line
+	10200 7850 10200 7950
+Wire Wire Line
+	10200 7950 10150 7950
+Wire Wire Line
+	10150 7950 10150 8750
+Wire Wire Line
+	10150 8750 10150 9050
+Connection ~ 10150 8750
+Wire Wire Line
+	10450 8950 10450 9000
+Wire Wire Line
+	10450 9000 10450 9050
+Wire Wire Line
+	10450 9000 10800 9000
+Wire Wire Line
+	10800 9000 10800 8900
+Connection ~ 10450 9000
+$Comp
+L D D?
+U 1 1 59023436
+P 10800 8750
+F 0 "D?" H 10800 8850 50  0000 C CNN
+F 1 "D" H 10800 8650 50  0000 C CNN
+F 2 "" H 10800 8750 50  0000 C CNN
+F 3 "" H 10800 8750 50  0000 C CNN
+	1    10800 8750
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	10800 8600 10800 8500
+Wire Wire Line
+	10800 8500 10450 8500
+Connection ~ 10450 8500
+Text Notes 9300 9400 0    60   ~ 0
+protection: \nreverse polarity & short circuit
+$Comp
+L Q_PMOS_DGS Q?
+U 1 1 5902BE2B
+P 9500 8750
+F 0 "Q?" H 9750 8750 50  0000 R CNN
+F 1 "Q_PMOS_DGS" H 9850 8600 50  0000 R CNN
+F 2 "" H 9700 8850 50  0000 C CNN
+F 3 "" H 9500 8750 50  0000 C CNN
+	1    9500 8750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9600 8450 9600 8500
+Wire Wire Line
+	9600 8500 9600 8550
+Wire Wire Line
+	9300 7950 9300 8750
+Wire Wire Line
+	9300 8750 9300 9050
+Connection ~ 9300 8750
+Wire Wire Line
+	9600 8950 9600 9000
+Wire Wire Line
+	9600 9000 9600 9050
+Wire Wire Line
+	9600 9000 9950 9000
+Wire Wire Line
+	9950 9000 9950 8900
+Connection ~ 9600 9000
+$Comp
+L D D?
+U 1 1 5902BE3B
+P 9950 8750
+F 0 "D?" H 9950 8850 50  0000 C CNN
+F 1 "D" H 9950 8650 50  0000 C CNN
+F 2 "" H 9950 8750 50  0000 C CNN
+F 3 "" H 9950 8750 50  0000 C CNN
+	1    9950 8750
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	9950 8600 9950 8500
+Wire Wire Line
+	9950 8500 9600 8500
+Connection ~ 9600 8500
+Wire Wire Line
+	9300 7950 9350 7950
+Wire Wire Line
+	9350 7950 9350 7850
+Text Notes 6900 9450 0    60   ~ 0
+10mF?
+Text Notes 9300 8550 0    60   ~ 0
+OR BALANCER
 $EndSCHEMATC
