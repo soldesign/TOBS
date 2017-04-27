@@ -1,0 +1,1368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>C:\Users\koops\OneDrive\Documents\Arbeit\MEI\Hybrid Charge controller\KiCad documents\HybridChargeController.sch</source>
+    <date>27.04.2017 17:16:07</date>
+    <tool>Eeschema 4.0.4-stable</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>HybridChargeController.sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="R37">
+      <value>47k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58D3AA5E</tstamp>
+    </comp>
+    <comp ref="R35">
+      <value>100k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58D3AA9E</tstamp>
+    </comp>
+    <comp ref="R31">
+      <value>47k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58D8C1D7</tstamp>
+    </comp>
+    <comp ref="Q7">
+      <value>2N3904</value>
+      <libsource lib="device" part="Q_NPN_EBC"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58D8E9F2</tstamp>
+    </comp>
+    <comp ref="Q8">
+      <value>2N3904</value>
+      <libsource lib="device" part="Q_NPN_EBC"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58D8EBDE</tstamp>
+    </comp>
+    <comp ref="R26">
+      <value>10k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58DCF031</tstamp>
+    </comp>
+    <comp ref="Q9">
+      <value>IPD90P04P4_05</value>
+      <libsource lib="device" part="Q_NMOS_GSD"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58DD00C5</tstamp>
+    </comp>
+    <comp ref="Q6">
+      <value>IPD90P04P4_05</value>
+      <libsource lib="device" part="Q_NMOS_GSD"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58DD0231</tstamp>
+    </comp>
+    <comp ref="R12">
+      <value>47k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58DD08D4</tstamp>
+    </comp>
+    <comp ref="R9">
+      <value>100k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58DD08DA</tstamp>
+    </comp>
+    <comp ref="Q1">
+      <value>2N3904</value>
+      <libsource lib="device" part="Q_NPN_EBC"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58DD08F8</tstamp>
+    </comp>
+    <comp ref="R6">
+      <value>10k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58DD08FE</tstamp>
+    </comp>
+    <comp ref="Q2">
+      <value>IPD90P04P4_05</value>
+      <libsource lib="device" part="Q_NMOS_GSD"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58DD0907</tstamp>
+    </comp>
+    <comp ref="AU1">
+      <value>Uno Layout</value>
+      <libsource lib="arduinouno" part="ArduinoUno"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EE210F</tstamp>
+    </comp>
+    <comp ref="U1">
+      <value>LM358</value>
+      <libsource lib="linear" part="LM358"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EEE6F8</tstamp>
+    </comp>
+    <comp ref="R8">
+      <value>33k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EF5100</tstamp>
+    </comp>
+    <comp ref="R7">
+      <value>100k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EF54ED</tstamp>
+    </comp>
+    <comp ref="R18">
+      <value>R005</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EF5EB6</tstamp>
+    </comp>
+    <comp ref="R15">
+      <value>4.7k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EF5F2B</tstamp>
+    </comp>
+    <comp ref="R22">
+      <value>10k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EF6090</tstamp>
+    </comp>
+    <comp ref="R20">
+      <value>220k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EF61D9</tstamp>
+    </comp>
+    <comp ref="R21">
+      <value>4.7k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EF6908</tstamp>
+    </comp>
+    <comp ref="R23">
+      <value>10k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EF6A0F</tstamp>
+    </comp>
+    <comp ref="R19">
+      <value>220k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EF6B0D</tstamp>
+    </comp>
+    <comp ref="F2">
+      <value>15A</value>
+      <libsource lib="device" part="FUSE"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EF7BBC</tstamp>
+    </comp>
+    <comp ref="R33">
+      <value>R005</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EFB0C2</tstamp>
+    </comp>
+    <comp ref="R34">
+      <value>4.7k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EFB0C8</tstamp>
+    </comp>
+    <comp ref="R28">
+      <value>10k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EFB0CE</tstamp>
+    </comp>
+    <comp ref="R32">
+      <value>220k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EFB0D4</tstamp>
+    </comp>
+    <comp ref="R30">
+      <value>4.7k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EFB0DA</tstamp>
+    </comp>
+    <comp ref="R29">
+      <value>10k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EFB0E0</tstamp>
+    </comp>
+    <comp ref="R36">
+      <value>220k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EFB0E6</tstamp>
+    </comp>
+    <comp ref="C11">
+      <value>10µ</value>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EFF963</tstamp>
+    </comp>
+    <comp ref="D2">
+      <value>1N4148-T</value>
+      <libsource lib="device" part="D"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58F01292</tstamp>
+    </comp>
+    <comp ref="U4">
+      <value>LM358</value>
+      <libsource lib="linear" part="LM358"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58F032DF</tstamp>
+    </comp>
+    <comp ref="R42">
+      <value>33k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58F03300</tstamp>
+    </comp>
+    <comp ref="R41">
+      <value>100k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58F03306</tstamp>
+    </comp>
+    <comp ref="R44">
+      <value>R005</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58F0330C</tstamp>
+    </comp>
+    <comp ref="R43">
+      <value>4.7k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58F03312</tstamp>
+    </comp>
+    <comp ref="R48">
+      <value>10k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58F03318</tstamp>
+    </comp>
+    <comp ref="R46">
+      <value>220k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58F0331E</tstamp>
+    </comp>
+    <comp ref="R47">
+      <value>4.7k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58F03324</tstamp>
+    </comp>
+    <comp ref="R49">
+      <value>10k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58F0332A</tstamp>
+    </comp>
+    <comp ref="R45">
+      <value>220k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58F03330</tstamp>
+    </comp>
+    <comp ref="P1">
+      <value>Load</value>
+      <libsource lib="conn" part="CONN_01X02"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58F06514</tstamp>
+    </comp>
+    <comp ref="P3">
+      <value>PV</value>
+      <libsource lib="conn" part="CONN_01X02"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58F06CBD</tstamp>
+    </comp>
+    <comp ref="P6">
+      <value>LA</value>
+      <libsource lib="conn" part="CONN_01X02"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58F07029</tstamp>
+    </comp>
+    <comp ref="D3">
+      <value>VSB2045Y-M3/54</value>
+      <libsource lib="device" part="D"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58F0B98B</tstamp>
+    </comp>
+    <comp ref="R40">
+      <value>2.2k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EE8414</tstamp>
+    </comp>
+    <comp ref="R39">
+      <value>100k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EE841A</tstamp>
+    </comp>
+    <comp ref="Q10">
+      <value>2N3904</value>
+      <libsource lib="device" part="Q_NPN_EBC"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EE843A</tstamp>
+    </comp>
+    <comp ref="R38">
+      <value>10k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EE8440</tstamp>
+    </comp>
+    <comp ref="Q11">
+      <value>IPD90P04P4_05</value>
+      <libsource lib="device" part="Q_NMOS_GSD"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58EE8448</tstamp>
+    </comp>
+    <comp ref="P2">
+      <value>LI_balancer</value>
+      <libsource lib="conn" part="CONN_01X03"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58FA50AC</tstamp>
+    </comp>
+    <comp ref="U2">
+      <value>bq76920</value>
+      <libsource lib="bq76920" part="bq76920"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58FB0372</tstamp>
+    </comp>
+    <comp ref="R1">
+      <value>100</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58FB433D</tstamp>
+    </comp>
+    <comp ref="C1">
+      <value>1µ</value>
+      <libsource lib="device" part="C_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58FB5AA5</tstamp>
+    </comp>
+    <comp ref="R16">
+      <value>R005</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58FC4FBF</tstamp>
+    </comp>
+    <comp ref="Q3">
+      <value>RQ3E100BNTB</value>
+      <libsource lib="device" part="Q_NMOS_DGS"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58FC6607</tstamp>
+    </comp>
+    <comp ref="Q5">
+      <value>RQ3E100BNTB</value>
+      <libsource lib="device" part="Q_NMOS_DGS"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58FC7157</tstamp>
+    </comp>
+    <comp ref="R24">
+      <value>1M</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58FC76A9</tstamp>
+    </comp>
+    <comp ref="R27">
+      <value>1M</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58FCBA25</tstamp>
+    </comp>
+    <comp ref="R25">
+      <value>1M</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58FCE652</tstamp>
+    </comp>
+    <comp ref="D1">
+      <value>1N4148-T</value>
+      <libsource lib="device" part="D"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58FCE732</tstamp>
+    </comp>
+    <comp ref="C6">
+      <value>1µ</value>
+      <libsource lib="device" part="C_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58FD76E9</tstamp>
+    </comp>
+    <comp ref="R10">
+      <value>100</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58FD8BD8</tstamp>
+    </comp>
+    <comp ref="C9">
+      <value>10µ</value>
+      <libsource lib="device" part="C_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58FDABE8</tstamp>
+    </comp>
+    <comp ref="C7">
+      <value>1µ</value>
+      <libsource lib="device" part="C_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58FDE58E</tstamp>
+    </comp>
+    <comp ref="R11">
+      <value>10k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58FE3494</tstamp>
+    </comp>
+    <comp ref="R13">
+      <value>10k</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58FE4887</tstamp>
+    </comp>
+    <comp ref="R14">
+      <value>100</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58FE70F5</tstamp>
+    </comp>
+    <comp ref="R17">
+      <value>100</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58FE758B</tstamp>
+    </comp>
+    <comp ref="C5">
+      <value>0,1µ</value>
+      <libsource lib="device" part="C_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58FE842D</tstamp>
+    </comp>
+    <comp ref="C8">
+      <value>0,1µ</value>
+      <libsource lib="device" part="C_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58FE935F</tstamp>
+    </comp>
+    <comp ref="C10">
+      <value>0,1µ</value>
+      <libsource lib="device" part="C_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>58FE9497</tstamp>
+    </comp>
+    <comp ref="U3">
+      <value>cd4051</value>
+      <libsource lib="cd4051" part="cd4051"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5901577D</tstamp>
+    </comp>
+    <comp ref="Q13">
+      <value>STL60P4LLF6</value>
+      <libsource lib="stl60p4llf6" part="STL60P4LLF6"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5903A5CC</tstamp>
+    </comp>
+    <comp ref="F1">
+      <value>15A</value>
+      <libsource lib="device" part="FUSE"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5903E8E7</tstamp>
+    </comp>
+    <comp ref="P5">
+      <value>LI</value>
+      <libsource lib="conn" part="CONN_01X02"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5903E8ED</tstamp>
+    </comp>
+    <comp ref="Q12">
+      <value>STL60P4LLF6</value>
+      <libsource lib="stl60p4llf6" part="STL60P4LLF6"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5903E8F5</tstamp>
+    </comp>
+    <comp ref="P4">
+      <value>Extra</value>
+      <libsource lib="conn" part="CONN_01X07"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5904BFED</tstamp>
+    </comp>
+    <comp ref="Q4">
+      <value>BSS138</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-23</footprint>
+      <libsource lib="transistors" part="BSS138"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5905B77E</tstamp>
+    </comp>
+    <comp ref="R2">
+      <value>100</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5906D0BF</tstamp>
+    </comp>
+    <comp ref="R3">
+      <value>100</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5906D214</tstamp>
+    </comp>
+    <comp ref="R4">
+      <value>100</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5906D21A</tstamp>
+    </comp>
+    <comp ref="R5">
+      <value>100</value>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5906D2D2</tstamp>
+    </comp>
+    <comp ref="C2">
+      <value>1µ</value>
+      <libsource lib="device" part="C_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5906D6DF</tstamp>
+    </comp>
+    <comp ref="C3">
+      <value>1µ</value>
+      <libsource lib="device" part="C_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5906D803</tstamp>
+    </comp>
+    <comp ref="C4">
+      <value>1µ</value>
+      <libsource lib="device" part="C_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5906D936</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="arduinouno" part="ArduinoUno">
+      <fields>
+        <field name="Reference">AU</field>
+        <field name="Value">ArduinoUno</field>
+      </fields>
+      <pins>
+        <pin num="0" name="D0" type="input"/>
+        <pin num="1" name="D1" type="input"/>
+        <pin num="2" name="D2" type="input"/>
+        <pin num="3" name="D3" type="input"/>
+        <pin num="4" name="D4" type="input"/>
+        <pin num="5" name="D5" type="input"/>
+        <pin num="5V" name="5V" type="input"/>
+        <pin num="6" name="D6" type="input"/>
+        <pin num="7" name="D7" type="input"/>
+        <pin num="8" name="D8" type="input"/>
+        <pin num="9" name="D9" type="input"/>
+        <pin num="10" name="D10" type="input"/>
+        <pin num="11" name="D11" type="input"/>
+        <pin num="12" name="D12" type="input"/>
+        <pin num="13" name="D13" type="input"/>
+        <pin num="3V3" name="3V3" type="input"/>
+        <pin num="A0" name="A0" type="input"/>
+        <pin num="A1" name="A1" type="input"/>
+        <pin num="A2" name="A2" type="input"/>
+        <pin num="A3" name="A3" type="input"/>
+        <pin num="A4" name="A4" type="input"/>
+        <pin num="A5" name="A5" type="input"/>
+        <pin num="AREF" name="AREF" type="input"/>
+        <pin num="GND1" name="GND" type="input"/>
+        <pin num="GND2" name="GND" type="input"/>
+        <pin num="GND3" name="GND" type="input"/>
+        <pin num="RST" name="RST" type="input"/>
+        <pin num="V_IN" name="V_IN" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="transistors" part="BSS138">
+      <aliases>
+        <alias>2N7002</alias>
+      </aliases>
+      <description>50V Vds, 0.22A Id, N-Channel MOSFET, SOT-23</description>
+      <docs>http://www.fairchildsemi.com/ds/BS/BSS138.pdf</docs>
+      <footprints>
+        <fp>SOT-23*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">BSS138</field>
+        <field name="Footprint">TO_SOT_Packages_SMD:SOT-23</field>
+      </fields>
+      <pins>
+        <pin num="1" name="G" type="passive"/>
+        <pin num="2" name="S" type="passive"/>
+        <pin num="3" name="D" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="C">
+      <description>Unpolarized capacitor</description>
+      <footprints>
+        <fp>C?</fp>
+        <fp>C_????_*</fp>
+        <fp>C_????</fp>
+        <fp>SMD*_c</fp>
+        <fp>Capacitor*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="conn" part="CONN_01X02">
+      <description>Connector, single row, 01x02</description>
+      <footprints>
+        <fp>Pin_Header_Straight_1X02</fp>
+        <fp>Pin_Header_Angled_1X02</fp>
+        <fp>Socket_Strip_Straight_1X02</fp>
+        <fp>Socket_Strip_Angled_1X02</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">P</field>
+        <field name="Value">CONN_01X02</field>
+      </fields>
+      <pins>
+        <pin num="1" name="P1" type="passive"/>
+        <pin num="2" name="P2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="conn" part="CONN_01X03">
+      <description>Connector, single row, 01x03</description>
+      <footprints>
+        <fp>Pin_Header_Straight_1X03</fp>
+        <fp>Pin_Header_Angled_1X03</fp>
+        <fp>Socket_Strip_Straight_1X03</fp>
+        <fp>Socket_Strip_Angled_1X03</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">P</field>
+        <field name="Value">CONN_01X03</field>
+      </fields>
+      <pins>
+        <pin num="1" name="P1" type="passive"/>
+        <pin num="2" name="P2" type="passive"/>
+        <pin num="3" name="P3" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="conn" part="CONN_01X07">
+      <description>Connector, single row, 01x07</description>
+      <footprints>
+        <fp>Pin_Header_Straight_1X07</fp>
+        <fp>Pin_Header_Angled_1X07</fp>
+        <fp>Socket_Strip_Straight_1X07</fp>
+        <fp>Socket_Strip_Angled_1X07</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">P</field>
+        <field name="Value">CONN_01X07</field>
+      </fields>
+      <pins>
+        <pin num="1" name="P1" type="passive"/>
+        <pin num="2" name="P2" type="passive"/>
+        <pin num="3" name="P3" type="passive"/>
+        <pin num="4" name="P4" type="passive"/>
+        <pin num="5" name="P5" type="passive"/>
+        <pin num="6" name="P6" type="passive"/>
+        <pin num="7" name="P7" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="C_Small">
+      <description>Unpolarized capacitor</description>
+      <footprints>
+        <fp>C?</fp>
+        <fp>C_????_*</fp>
+        <fp>C_????</fp>
+        <fp>SMD*_c</fp>
+        <fp>Capacitor*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C_Small</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="D">
+      <description>Diode</description>
+      <footprints>
+        <fp>Diode_*</fp>
+        <fp>D-Pak_TO252AA</fp>
+        <fp>*SingleDiode</fp>
+        <fp>*_Diode_*</fp>
+        <fp>*SingleDiode*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">D</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="FUSE">
+      <fields>
+        <field name="Reference">F</field>
+        <field name="Value">FUSE</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="input"/>
+        <pin num="2" name="~" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="linear" part="LM358">
+      <aliases>
+        <alias>LMC6062</alias>
+        <alias>LMC6082</alias>
+        <alias>LM358N</alias>
+        <alias>TL072</alias>
+        <alias>TL082</alias>
+        <alias>NE5532</alias>
+        <alias>4558</alias>
+      </aliases>
+      <description>Dual Op amp (low power)</description>
+      <docs>ns/lm158.pdf</docs>
+      <footprints>
+        <fp>SOIC*</fp>
+        <fp>DIP*</fp>
+        <fp>TSSOP*</fp>
+        <fp>TO-99*</fp>
+        <fp>DSBGA*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">LM358</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="output"/>
+        <pin num="2" name="-" type="input"/>
+        <pin num="3" name="+" type="input"/>
+        <pin num="4" name="V-" type="power_in"/>
+        <pin num="5" name="+" type="input"/>
+        <pin num="6" name="-" type="input"/>
+        <pin num="7" name="~" type="output"/>
+        <pin num="8" name="V+" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="Q_NMOS_DGS">
+      <description>Transistor N-MOSFET (general)</description>
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">Q_NMOS_DGS</field>
+      </fields>
+      <pins>
+        <pin num="1" name="D" type="passive"/>
+        <pin num="2" name="G" type="input"/>
+        <pin num="3" name="S" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="Q_NMOS_GSD">
+      <description>Transistor N-MOSFET (general)</description>
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">Q_NMOS_GSD</field>
+      </fields>
+      <pins>
+        <pin num="1" name="G" type="input"/>
+        <pin num="2" name="S" type="passive"/>
+        <pin num="3" name="D" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="Q_NPN_EBC">
+      <description>Transistor NPN (general)</description>
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">Q_NPN_EBC</field>
+      </fields>
+      <pins>
+        <pin num="1" name="E" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+        <pin num="3" name="C" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="R">
+      <description>Resistor</description>
+      <footprints>
+        <fp>R_*</fp>
+        <fp>Resistor_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="stl60p4llf6" part="STL60P4LLF6">
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">STL60P4LLF6</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="input"/>
+        <pin num="2" name="S" type="input"/>
+        <pin num="3" name="~" type="input"/>
+        <pin num="4" name="G" type="input"/>
+        <pin num="5" name="~" type="input"/>
+        <pin num="6" name="~" type="input"/>
+        <pin num="7" name="D" type="input"/>
+        <pin num="8" name="~" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="bq76920" part="bq76920">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">bq76920</field>
+      </fields>
+      <pins>
+        <pin num="1" name="DSG" type="input"/>
+        <pin num="2" name="CHG" type="input"/>
+        <pin num="3" name="VSS" type="input"/>
+        <pin num="4" name="SDA" type="input"/>
+        <pin num="5" name="SCL" type="input"/>
+        <pin num="6" name="TS1" type="input"/>
+        <pin num="7" name="CAP1" type="input"/>
+        <pin num="8" name="REGOUT" type="input"/>
+        <pin num="9" name="REGSRC" type="input"/>
+        <pin num="10" name="BAT" type="input"/>
+        <pin num="11" name="NC" type="NotConnected"/>
+        <pin num="12" name="VC5" type="input"/>
+        <pin num="13" name="VC4" type="input"/>
+        <pin num="14" name="VC3" type="input"/>
+        <pin num="15" name="VC2" type="input"/>
+        <pin num="16" name="VC1" type="input"/>
+        <pin num="17" name="VC0" type="input"/>
+        <pin num="18" name="SRP" type="input"/>
+        <pin num="19" name="SRN" type="input"/>
+        <pin num="20" name="ALERT" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="cd4051" part="cd4051">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">cd4051</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Ch4" type="output"/>
+        <pin num="2" name="Ch6" type="output"/>
+        <pin num="3" name="COM" type="output"/>
+        <pin num="4" name="Ch7" type="output"/>
+        <pin num="5" name="Ch5" type="output"/>
+        <pin num="6" name="INH" type="output"/>
+        <pin num="7" name="VEE" type="output"/>
+        <pin num="8" name="VSS" type="output"/>
+        <pin num="9" name="C" type="output"/>
+        <pin num="10" name="B" type="output"/>
+        <pin num="11" name="A" type="output"/>
+        <pin num="12" name="Ch3" type="output"/>
+        <pin num="13" name="Ch0" type="output"/>
+        <pin num="14" name="Ch1" type="output"/>
+        <pin num="15" name="Ch2" type="output"/>
+        <pin num="16" name="VDD" type="output"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="conn">
+      <uri>C:\Program Files\KiCad\share\kicad\library\conn.lib</uri>
+    </library>
+    <library logical="linear">
+      <uri>C:\Program Files\KiCad\share\kicad\library\linear.lib</uri>
+    </library>
+    <library logical="transistors">
+      <uri>C:\Program Files\KiCad\share\kicad\library\transistors.lib</uri>
+    </library>
+    <library logical="device">
+      <uri>C:\Program Files\KiCad\share\kicad\library\device.lib</uri>
+    </library>
+    <library logical="bq76920">
+      <uri>C:\Users\koops\OneDrive\Documents\Arbeit\MEI\Hybrid Charge controller\KiCad documents\Libraries\bq76920.lib</uri>
+    </library>
+    <library logical="cd4051">
+      <uri>C:\Users\koops\OneDrive\Documents\Arbeit\MEI\Hybrid Charge controller\KiCad documents\Libraries\cd4051.lib</uri>
+    </library>
+    <library logical="arduinouno">
+      <uri>C:\Users\koops\OneDrive\Documents\Arbeit\MEI\Hybrid Charge controller\KiCad documents\Libraries\arduinouno.lib</uri>
+    </library>
+    <library logical="stl60p4llf6">
+      <uri>C:\Users\koops\OneDrive\Documents\Arbeit\MEI\Hybrid Charge controller\KiCad documents\Libraries\stl60p4llf6.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="Net-(R15-Pad2)">
+      <node ref="R15" pin="2"/>
+      <node ref="U1" pin="2"/>
+      <node ref="R19" pin="2"/>
+    </net>
+    <net code="2" name="Net-(R20-Pad1)">
+      <node ref="R22" pin="2"/>
+      <node ref="R20" pin="1"/>
+      <node ref="R23" pin="1"/>
+    </net>
+    <net code="3" name="Net-(R20-Pad2)">
+      <node ref="R21" pin="2"/>
+      <node ref="U1" pin="3"/>
+      <node ref="R20" pin="2"/>
+    </net>
+    <net code="4" name="Net-(R28-Pad2)">
+      <node ref="R28" pin="2"/>
+      <node ref="R32" pin="1"/>
+      <node ref="R29" pin="1"/>
+    </net>
+    <net code="5" name="Net-(R34-Pad2)">
+      <node ref="U1" pin="6"/>
+      <node ref="R34" pin="2"/>
+      <node ref="R36" pin="1"/>
+    </net>
+    <net code="6" name="Net-(R30-Pad2)">
+      <node ref="R32" pin="2"/>
+      <node ref="U1" pin="5"/>
+      <node ref="R30" pin="2"/>
+    </net>
+    <net code="7" name="/LOAD-">
+      <node ref="R34" pin="1"/>
+      <node ref="P1" pin="2"/>
+      <node ref="R33" pin="2"/>
+    </net>
+    <net code="8" name="Net-(Q6-Pad1)">
+      <node ref="Q9" pin="1"/>
+      <node ref="R37" pin="1"/>
+      <node ref="Q8" pin="3"/>
+      <node ref="Q6" pin="1"/>
+    </net>
+    <net code="9" name="Net-(Q7-Pad2)">
+      <node ref="Q7" pin="2"/>
+      <node ref="R26" pin="1"/>
+    </net>
+    <net code="10" name="Net-(Q6-Pad3)">
+      <node ref="R31" pin="2"/>
+      <node ref="R37" pin="2"/>
+      <node ref="Q9" pin="3"/>
+      <node ref="Q6" pin="3"/>
+    </net>
+    <net code="11" name="Net-(Q7-Pad3)">
+      <node ref="Q8" pin="2"/>
+      <node ref="Q7" pin="3"/>
+      <node ref="R31" pin="1"/>
+      <node ref="R35" pin="2"/>
+    </net>
+    <net code="12" name="/LA-">
+      <node ref="Q13" pin="4"/>
+      <node ref="R8" pin="2"/>
+      <node ref="R15" pin="1"/>
+      <node ref="R18" pin="2"/>
+      <node ref="P6" pin="1"/>
+    </net>
+    <net code="13" name="/LA+">
+      <node ref="Q13" pin="1"/>
+      <node ref="Q13" pin="2"/>
+      <node ref="R7" pin="1"/>
+      <node ref="Q13" pin="3"/>
+      <node ref="Q6" pin="2"/>
+    </net>
+    <net code="14" name="Net-(Q1-Pad3)">
+      <node ref="R12" pin="1"/>
+      <node ref="Q1" pin="3"/>
+      <node ref="Q2" pin="1"/>
+    </net>
+    <net code="15" name="/LOAD+">
+      <node ref="P1" pin="1"/>
+      <node ref="Q2" pin="2"/>
+    </net>
+    <net code="16" name="Net-(Q1-Pad2)">
+      <node ref="R6" pin="1"/>
+      <node ref="R9" pin="2"/>
+      <node ref="Q1" pin="2"/>
+    </net>
+    <net code="17" name="Net-(F2-Pad1)">
+      <node ref="P6" pin="2"/>
+      <node ref="F2" pin="1"/>
+    </net>
+    <net code="18" name="Net-(Q10-Pad3)">
+      <node ref="R40" pin="1"/>
+      <node ref="Q10" pin="3"/>
+      <node ref="Q11" pin="1"/>
+    </net>
+    <net code="19" name="Net-(Q10-Pad2)">
+      <node ref="R38" pin="1"/>
+      <node ref="R39" pin="2"/>
+      <node ref="Q10" pin="2"/>
+    </net>
+    <net code="20" name="Net-(D3-Pad2)">
+      <node ref="D3" pin="2"/>
+      <node ref="P3" pin="1"/>
+    </net>
+    <net code="21" name="Net-(R46-Pad1)">
+      <node ref="R48" pin="2"/>
+      <node ref="R49" pin="1"/>
+      <node ref="R46" pin="1"/>
+    </net>
+    <net code="22" name="/MplexC">
+      <node ref="U3" pin="9"/>
+      <node ref="AU1" pin="A2"/>
+    </net>
+    <net code="23" name="/MplexB">
+      <node ref="AU1" pin="A1"/>
+      <node ref="U3" pin="10"/>
+    </net>
+    <net code="24" name="/S_PV_I">
+      <node ref="U3" pin="12"/>
+      <node ref="U4" pin="1"/>
+      <node ref="R45" pin="1"/>
+    </net>
+    <net code="25" name="Net-(U3-Pad13)">
+      <node ref="U3" pin="13"/>
+    </net>
+    <net code="26" name="/S_LA_I">
+      <node ref="R19" pin="1"/>
+      <node ref="U3" pin="14"/>
+      <node ref="U1" pin="1"/>
+    </net>
+    <net code="27" name="/S_PV_V">
+      <node ref="U3" pin="15"/>
+      <node ref="R42" pin="1"/>
+      <node ref="R41" pin="2"/>
+    </net>
+    <net code="28" name="Net-(F2-Pad2)">
+      <node ref="Q13" pin="8"/>
+      <node ref="Q13" pin="7"/>
+      <node ref="Q13" pin="6"/>
+      <node ref="Q13" pin="5"/>
+      <node ref="F2" pin="2"/>
+    </net>
+    <net code="29" name="Net-(AU1-PadV_IN)">
+      <node ref="AU1" pin="V_IN"/>
+      <node ref="C11" pin="1"/>
+      <node ref="D2" pin="1"/>
+    </net>
+    <net code="30" name="Net-(R43-Pad2)">
+      <node ref="U4" pin="2"/>
+      <node ref="R43" pin="2"/>
+      <node ref="R45" pin="2"/>
+    </net>
+    <net code="31" name="Net-(R46-Pad2)">
+      <node ref="U4" pin="3"/>
+      <node ref="R47" pin="2"/>
+      <node ref="R46" pin="2"/>
+    </net>
+    <net code="32" name="/PV-">
+      <node ref="R42" pin="2"/>
+      <node ref="P3" pin="2"/>
+      <node ref="R44" pin="2"/>
+      <node ref="R43" pin="1"/>
+      <node ref="Q10" pin="1"/>
+      <node ref="R39" pin="1"/>
+    </net>
+    <net code="33" name="/LI+">
+      <node ref="C7" pin="1"/>
+      <node ref="R1" pin="2"/>
+      <node ref="R10" pin="2"/>
+      <node ref="U2" pin="9"/>
+      <node ref="Q12" pin="1"/>
+      <node ref="Q12" pin="2"/>
+      <node ref="Q12" pin="3"/>
+    </net>
+    <net code="34" name="Net-(F1-Pad2)">
+      <node ref="Q12" pin="5"/>
+      <node ref="Q12" pin="6"/>
+      <node ref="F1" pin="2"/>
+      <node ref="Q12" pin="8"/>
+      <node ref="Q12" pin="7"/>
+    </net>
+    <net code="35" name="Net-(F1-Pad1)">
+      <node ref="F1" pin="1"/>
+      <node ref="P5" pin="2"/>
+    </net>
+    <net code="36" name="/LI-">
+      <node ref="R16" pin="2"/>
+      <node ref="R5" pin="2"/>
+      <node ref="Q12" pin="4"/>
+      <node ref="P5" pin="1"/>
+      <node ref="R14" pin="1"/>
+    </net>
+    <net code="37" name="/CHG">
+      <node ref="Q4" pin="3"/>
+      <node ref="U2" pin="2"/>
+    </net>
+    <net code="38" name="/CELL34">
+      <node ref="P2" pin="3"/>
+      <node ref="R2" pin="2"/>
+    </net>
+    <net code="39" name="/CELL23">
+      <node ref="P2" pin="2"/>
+      <node ref="R3" pin="2"/>
+    </net>
+    <net code="40" name="Net-(U3-Pad4)">
+      <node ref="U3" pin="4"/>
+    </net>
+    <net code="41" name="/CELL12">
+      <node ref="R4" pin="2"/>
+      <node ref="P2" pin="1"/>
+    </net>
+    <net code="42" name="Net-(AU1-PadAREF)">
+      <node ref="AU1" pin="AREF"/>
+    </net>
+    <net code="43" name="/SCK">
+      <node ref="AU1" pin="13"/>
+      <node ref="P4" pin="1"/>
+    </net>
+    <net code="44" name="/MISO">
+      <node ref="P4" pin="2"/>
+      <node ref="AU1" pin="12"/>
+    </net>
+    <net code="45" name="/MOSI">
+      <node ref="P4" pin="3"/>
+      <node ref="AU1" pin="11"/>
+    </net>
+    <net code="46" name="/D5">
+      <node ref="P4" pin="4"/>
+    </net>
+    <net code="47" name="/RST">
+      <node ref="AU1" pin="RST"/>
+      <node ref="P4" pin="7"/>
+    </net>
+    <net code="48" name="Net-(U3-Pad2)">
+      <node ref="U3" pin="2"/>
+    </net>
+    <net code="49" name="/DSG">
+      <node ref="R24" pin="1"/>
+      <node ref="U2" pin="1"/>
+      <node ref="Q3" pin="2"/>
+    </net>
+    <net code="50" name="Net-(Q3-Pad1)">
+      <node ref="Q3" pin="1"/>
+      <node ref="Q5" pin="1"/>
+    </net>
+    <net code="51" name="Net-(R11-Pad1)">
+      <node ref="R11" pin="1"/>
+      <node ref="R13" pin="1"/>
+      <node ref="U2" pin="6"/>
+    </net>
+    <net code="52" name="Net-(Q3-Pad3)">
+      <node ref="R16" pin="1"/>
+      <node ref="R17" pin="1"/>
+      <node ref="Q3" pin="3"/>
+      <node ref="R24" pin="2"/>
+    </net>
+    <net code="53" name="Net-(D1-Pad1)">
+      <node ref="Q5" pin="2"/>
+      <node ref="R27" pin="1"/>
+      <node ref="R25" pin="2"/>
+      <node ref="D1" pin="1"/>
+    </net>
+    <net code="54" name="Net-(D1-Pad2)">
+      <node ref="R25" pin="1"/>
+      <node ref="D1" pin="2"/>
+      <node ref="Q4" pin="2"/>
+    </net>
+    <net code="55" name="Net-(C6-Pad1)">
+      <node ref="U2" pin="7"/>
+      <node ref="C6" pin="1"/>
+    </net>
+    <net code="56" name="Net-(C9-Pad1)">
+      <node ref="U2" pin="10"/>
+      <node ref="R10" pin="1"/>
+      <node ref="C9" pin="1"/>
+    </net>
+    <net code="57" name="/5V">
+      <node ref="AU1" pin="5V"/>
+      <node ref="R48" pin="1"/>
+      <node ref="R28" pin="1"/>
+      <node ref="R22" pin="1"/>
+      <node ref="U3" pin="16"/>
+    </net>
+    <net code="58" name="/GND">
+      <node ref="U2" pin="3"/>
+      <node ref="R35" pin="1"/>
+      <node ref="C6" pin="2"/>
+      <node ref="C9" pin="2"/>
+      <node ref="C7" pin="2"/>
+      <node ref="Q5" pin="3"/>
+      <node ref="C10" pin="2"/>
+      <node ref="U3" pin="7"/>
+      <node ref="U3" pin="6"/>
+      <node ref="R47" pin="1"/>
+      <node ref="R21" pin="1"/>
+      <node ref="AU1" pin="GND1"/>
+      <node ref="AU1" pin="GND2"/>
+      <node ref="AU1" pin="GND3"/>
+      <node ref="Q8" pin="1"/>
+      <node ref="Q7" pin="1"/>
+      <node ref="R49" pin="2"/>
+      <node ref="C5" pin="2"/>
+      <node ref="R13" pin="2"/>
+      <node ref="R27" pin="2"/>
+      <node ref="R18" pin="1"/>
+      <node ref="U3" pin="8"/>
+      <node ref="R23" pin="2"/>
+      <node ref="U1" pin="4"/>
+      <node ref="U4" pin="4"/>
+      <node ref="R33" pin="1"/>
+      <node ref="C11" pin="2"/>
+      <node ref="R30" pin="1"/>
+      <node ref="Q4" pin="1"/>
+      <node ref="R44" pin="1"/>
+      <node ref="R9" pin="1"/>
+      <node ref="Q1" pin="1"/>
+      <node ref="R29" pin="2"/>
+    </net>
+    <net code="59" name="/SW_LD">
+      <node ref="R6" pin="2"/>
+      <node ref="AU1" pin="7"/>
+    </net>
+    <net code="60" name="/RX">
+      <node ref="AU1" pin="0"/>
+    </net>
+    <net code="61" name="/TX">
+      <node ref="AU1" pin="1"/>
+    </net>
+    <net code="62" name="/SW_LA">
+      <node ref="AU1" pin="6"/>
+      <node ref="R26" pin="2"/>
+    </net>
+    <net code="63" name="/SSRX">
+      <node ref="AU1" pin="2"/>
+    </net>
+    <net code="64" name="/SSTX">
+      <node ref="AU1" pin="3"/>
+    </net>
+    <net code="65" name="/SIM_PWR">
+      <node ref="AU1" pin="4"/>
+    </net>
+    <net code="66" name="/LED_BTN">
+      <node ref="AU1" pin="5"/>
+    </net>
+    <net code="67" name="/D8">
+      <node ref="AU1" pin="8"/>
+      <node ref="P4" pin="5"/>
+    </net>
+    <net code="68" name="/D9">
+      <node ref="P4" pin="6"/>
+      <node ref="AU1" pin="9"/>
+    </net>
+    <net code="69" name="/SS">
+      <node ref="AU1" pin="10"/>
+    </net>
+    <net code="70" name="/MplexA">
+      <node ref="U3" pin="11"/>
+      <node ref="AU1" pin="A0"/>
+    </net>
+    <net code="71" name="/MplexOut">
+      <node ref="U3" pin="3"/>
+      <node ref="AU1" pin="A3"/>
+    </net>
+    <net code="72" name="/SCL">
+      <node ref="U2" pin="5"/>
+      <node ref="AU1" pin="A5"/>
+    </net>
+    <net code="73" name="Net-(AU1-Pad3V3)">
+      <node ref="AU1" pin="3V3"/>
+    </net>
+    <net code="74" name="/S_LD_I">
+      <node ref="R36" pin="2"/>
+      <node ref="U3" pin="1"/>
+      <node ref="U1" pin="7"/>
+    </net>
+    <net code="75" name="/S_LA_V">
+      <node ref="U3" pin="5"/>
+      <node ref="R8" pin="1"/>
+      <node ref="R7" pin="2"/>
+    </net>
+    <net code="76" name="Net-(U2-Pad8)">
+      <node ref="U2" pin="8"/>
+    </net>
+    <net code="77" name="/COM+">
+      <node ref="D3" pin="1"/>
+      <node ref="R40" pin="2"/>
+      <node ref="Q11" pin="2"/>
+      <node ref="Q11" pin="3"/>
+      <node ref="R41" pin="1"/>
+      <node ref="Q2" pin="3"/>
+      <node ref="R12" pin="2"/>
+      <node ref="U1" pin="8"/>
+      <node ref="D2" pin="2"/>
+      <node ref="Q9" pin="2"/>
+      <node ref="U4" pin="8"/>
+    </net>
+    <net code="78" name="/SW_PV">
+      <node ref="R38" pin="2"/>
+    </net>
+    <net code="79" name="/VC2">
+      <node ref="U2" pin="15"/>
+      <node ref="C3" pin="1"/>
+      <node ref="R3" pin="1"/>
+      <node ref="C2" pin="2"/>
+    </net>
+    <net code="80" name="/VC1">
+      <node ref="C3" pin="2"/>
+      <node ref="R4" pin="1"/>
+      <node ref="R11" pin="2"/>
+      <node ref="U2" pin="16"/>
+      <node ref="C4" pin="1"/>
+    </net>
+    <net code="81" name="/VC0">
+      <node ref="U2" pin="17"/>
+      <node ref="R5" pin="1"/>
+      <node ref="C4" pin="2"/>
+    </net>
+    <net code="82" name="/SRP">
+      <node ref="U2" pin="18"/>
+      <node ref="R14" pin="2"/>
+      <node ref="C8" pin="2"/>
+      <node ref="C5" pin="1"/>
+    </net>
+    <net code="83" name="/SRN">
+      <node ref="R17" pin="2"/>
+      <node ref="U2" pin="19"/>
+      <node ref="C8" pin="1"/>
+      <node ref="C10" pin="1"/>
+    </net>
+    <net code="84" name="/VC3">
+      <node ref="R2" pin="1"/>
+      <node ref="U2" pin="14"/>
+      <node ref="C2" pin="1"/>
+      <node ref="U2" pin="13"/>
+      <node ref="C1" pin="2"/>
+    </net>
+    <net code="85" name="/SDA">
+      <node ref="AU1" pin="A4"/>
+      <node ref="U2" pin="4"/>
+    </net>
+    <net code="86" name="/Alert">
+      <node ref="U2" pin="20"/>
+    </net>
+    <net code="87" name="Net-(U2-Pad11)">
+      <node ref="U2" pin="11"/>
+    </net>
+    <net code="88" name="/VC5">
+      <node ref="U2" pin="12"/>
+      <node ref="C1" pin="1"/>
+      <node ref="R1" pin="1"/>
+    </net>
+  </nets>
+</export>
