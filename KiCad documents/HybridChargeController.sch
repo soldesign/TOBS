@@ -31,6 +31,7 @@ LIBS:valves
 LIBS:arduinouno
 LIBS:bq76920
 LIBS:cd4051
+LIBS:stl60p4llf6
 LIBS:HybridChargeController-cache
 EELAYER 25 0
 EELAYER END
@@ -408,12 +409,12 @@ $EndComp
 $Comp
 L FUSE F?
 U 1 1 58EF7BBC
-P 10450 8200
-F 0 "F?" H 10550 8250 50  0000 C CNN
-F 1 "15A" H 10350 8150 50  0000 C CNN
-F 2 "" H 10450 8200 50  0000 C CNN
-F 3 "" H 10450 8200 50  0000 C CNN
-	1    10450 8200
+P 10675 8200
+F 0 "F?" H 10775 8250 50  0000 C CNN
+F 1 "15A" H 10575 8150 50  0000 C CNN
+F 2 "" H 10675 8200 50  0000 C CNN
+F 3 "" H 10675 8200 50  0000 C CNN
+	1    10675 8200
 	0    1    1    0   
 $EndComp
 Text Notes 700  4150 0    60   ~ 0
@@ -695,23 +696,12 @@ $EndComp
 $Comp
 L CONN_01X02 P?
 U 1 1 58F07029
-P 10250 7650
-F 0 "P?" H 10250 7800 50  0000 C CNN
-F 1 "LA" V 10350 7650 50  0000 C CNN
-F 2 "" H 10250 7650 50  0000 C CNN
-F 3 "" H 10250 7650 50  0000 C CNN
-	1    10250 7650
-	0    -1   -1   0   
-$EndComp
-$Comp
-L CONN_01X02 P?
-U 1 1 58F071A8
-P 9400 7650
-F 0 "P?" H 9400 7800 50  0000 C CNN
-F 1 "LI" V 9500 7650 50  0000 C CNN
-F 2 "" H 9400 7650 50  0000 C CNN
-F 3 "" H 9400 7650 50  0000 C CNN
-	1    9400 7650
+P 10475 7650
+F 0 "P?" H 10475 7800 50  0000 C CNN
+F 1 "LA" V 10575 7650 50  0000 C CNN
+F 2 "" H 10475 7650 50  0000 C CNN
+F 3 "" H 10475 7650 50  0000 C CNN
+	1    10475 7650
 	0    -1   -1   0   
 $EndComp
 Text Label 8600 7850 3    60   ~ 0
@@ -720,27 +710,12 @@ Text Label 8500 7850 3    60   ~ 0
 LOAD+
 Text Label 9050 7850 3    60   ~ 0
 PV-
-Text Label 10150 9050 3    60   ~ 0
+Text Label 10375 9350 3    60   ~ 0
 LA-
-Text Label 9300 9050 3    60   ~ 0
-LI-
 Text Label 8950 8450 3    60   ~ 0
 PV+
-Text Label 10450 9050 3    60   ~ 0
+Text Label 10575 9350 3    60   ~ 0
 LA+
-Text Label 9600 9050 3    60   ~ 0
-LI+
-$Comp
-L FUSE F?
-U 1 1 58F09BC6
-P 9600 8200
-F 0 "F?" H 9700 8250 50  0000 C CNN
-F 1 "15A" H 9500 8150 50  0000 C CNN
-F 2 "" H 9600 8200 50  0000 C CNN
-F 3 "" H 9600 8200 50  0000 C CNN
-	1    9600 8200
-	0    1    1    0   
-$EndComp
 $Comp
 L D D?
 U 1 1 58F0B98B
@@ -1282,6 +1257,55 @@ Text Notes 600  7500 0    60   ~ 0
 LI (dis-)charge, balance, monitor IC
 Text Label 6900 3450 2    60   ~ 0
 GND
+Text Label 7850 2850 0    60   ~ 0
+5V
+Text Label 7850 3550 0    60   ~ 0
+MplexC
+Text Label 7850 3450 0    60   ~ 0
+MplexB
+Text Label 7850 3350 0    60   ~ 0
+MplexA
+Text Label 7700 8800 3    60   ~ 0
+MplexC
+Text Label 7800 8800 3    60   ~ 0
+MplexB
+Text Label 7900 8800 3    60   ~ 0
+MplexA
+Text Label 7600 8800 3    60   ~ 0
+MplexOut
+Text Label 7000 3050 2    60   ~ 0
+MplexOut
+$Comp
+L cd4051 U?
+U 1 1 5901577D
+P 7450 2700
+F 0 "U?" H 7400 2750 60  0000 C CNN
+F 1 "cd4051" H 7450 2650 60  0000 C CNN
+F 2 "" H 7450 2700 60  0001 C CNN
+F 3 "" H 7450 2700 60  0001 C CNN
+	1    7450 2700
+	1    0    0    -1  
+$EndComp
+Text Notes 6800 3700 0    60   ~ 0
+INH(ibit) can reduce consumption
+NoConn ~ 7850 3150
+Text Notes 6500 2650 0    60   ~ 0
+Multiplexer
+Text Notes 9325 9925 0    60   ~ 0
+protection: \nreverse polarity & short circuit
+Text Notes 6900 9450 0    60   ~ 0
+10mF?
+$Comp
+L STL60P4LLF6 Q?
+U 1 1 5903A5CC
+P 10875 8950
+F 0 "Q?" H 11175 8850 60  0000 C CNN
+F 1 "STL60P4LLF6" H 11175 9200 60  0000 C CNN
+F 2 "" H 10875 8950 60  0001 C CNN
+F 3 "" H 10875 8950 60  0001 C CNN
+	1    10875 8950
+	1    0    0    -1  
+$EndComp
 Wire Wire Line
 	7750 1150 7850 1150
 Wire Wire Line
@@ -1320,11 +1344,11 @@ Wire Wire Line
 Wire Wire Line
 	8300 1450 8550 1450
 Wire Notes Line
-	11100 6600 5900 6600
+	11475 6600 5900 6600
 Wire Notes Line
-	11100 10100 11100 6600
+	11475 10100 11475 6600
 Wire Notes Line
-	5900 10100 11100 10100
+	5900 10100 11475 10100
 Wire Notes Line
 	5900 6600 5900 10100
 Wire Notes Line
@@ -1338,13 +1362,9 @@ Wire Notes Line
 Wire Wire Line
 	8950 7850 8950 8150
 Wire Wire Line
-	9450 7950 9600 7950
+	10525 7950 10675 7950
 Wire Wire Line
-	9450 7850 9450 7950
-Wire Wire Line
-	10300 7950 10450 7950
-Wire Wire Line
-	10300 7850 10300 7950
+	10525 7850 10525 7950
 Wire Wire Line
 	8750 1150 9800 1150
 Wire Wire Line
@@ -1920,35 +1940,6 @@ Wire Notes Line
 	5350 7400 5350 11200
 Wire Notes Line
 	5350 11200 550  11200
-Text Label 7850 2850 0    60   ~ 0
-5V
-Text Label 7850 3550 0    60   ~ 0
-MplexC
-Text Label 7850 3450 0    60   ~ 0
-MplexB
-Text Label 7850 3350 0    60   ~ 0
-MplexA
-Text Label 7700 8800 3    60   ~ 0
-MplexC
-Text Label 7800 8800 3    60   ~ 0
-MplexB
-Text Label 7900 8800 3    60   ~ 0
-MplexA
-Text Label 7600 8800 3    60   ~ 0
-MplexOut
-Text Label 7000 3050 2    60   ~ 0
-MplexOut
-$Comp
-L cd4051 U?
-U 1 1 5901577D
-P 7450 2700
-F 0 "U?" H 7400 2750 60  0000 C CNN
-F 1 "cd4051" H 7450 2650 60  0000 C CNN
-F 2 "" H 7450 2700 60  0001 C CNN
-F 3 "" H 7450 2700 60  0001 C CNN
-	1    7450 2700
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	7000 3350 6950 3350
 Wire Wire Line
@@ -1962,9 +1953,6 @@ Wire Wire Line
 Wire Wire Line
 	6950 3550 7000 3550
 Connection ~ 6950 3450
-Text Notes 6800 3700 0    60   ~ 0
-INH(ibit) can reduce consumption
-NoConn ~ 7850 3150
 Wire Notes Line
 	6450 2550 6450 3750
 Wire Notes Line
@@ -1973,110 +1961,103 @@ Wire Notes Line
 	8400 3750 8400 2550
 Wire Notes Line
 	8400 2550 6450 2550
-Text Notes 6500 2650 0    60   ~ 0
-Multiplexer
+Wire Wire Line
+	10425 7850 10425 7950
+Wire Wire Line
+	10425 7950 10375 7950
+Wire Wire Line
+	10375 7950 10375 9050
+Wire Wire Line
+	10375 9050 10375 9350
+Connection ~ 10375 9050
+Wire Wire Line
+	10375 9050 10500 9050
+Wire Wire Line
+	10675 9350 10575 9350
+Wire Wire Line
+	10675 9200 10675 9275
+Wire Wire Line
+	10675 9275 10675 9350
+Connection ~ 10675 9275
+Wire Wire Line
+	10675 8450 10675 8500
+Wire Wire Line
+	10675 8500 10675 8575
+Wire Wire Line
+	10675 8575 10675 8650
+Wire Wire Line
+	10675 8650 10675 8725
+Connection ~ 10675 8650
+Connection ~ 10675 8575
+Connection ~ 10675 8500
 $Comp
-L Q_PMOS_DGS Q?
-U 1 1 5901ED53
-P 10350 8750
-F 0 "Q?" H 10600 8750 50  0000 R CNN
-F 1 "Q_PMOS_DGS" H 10700 8600 50  0000 R CNN
-F 2 "" H 10550 8850 50  0000 C CNN
-F 3 "" H 10350 8750 50  0000 C CNN
-	1    10350 8750
+L FUSE F?
+U 1 1 5903E8E7
+P 9575 8200
+F 0 "F?" H 9675 8250 50  0000 C CNN
+F 1 "15A" H 9475 8150 50  0000 C CNN
+F 2 "" H 9575 8200 50  0000 C CNN
+F 3 "" H 9575 8200 50  0000 C CNN
+	1    9575 8200
+	0    1    1    0   
+$EndComp
+$Comp
+L CONN_01X02 P?
+U 1 1 5903E8ED
+P 9375 7650
+F 0 "P?" H 9375 7800 50  0000 C CNN
+F 1 "LI" V 9475 7650 50  0000 C CNN
+F 2 "" H 9375 7650 50  0000 C CNN
+F 3 "" H 9375 7650 50  0000 C CNN
+	1    9375 7650
+	0    -1   -1   0   
+$EndComp
+Text Label 9275 9350 3    60   ~ 0
+LI-
+Text Label 9475 9350 3    60   ~ 0
+LI+
+$Comp
+L STL60P4LLF6 Q?
+U 1 1 5903E8F5
+P 9775 8950
+F 0 "Q?" H 10075 8850 60  0000 C CNN
+F 1 "STL60P4LLF6" H 10075 9200 60  0000 C CNN
+F 2 "" H 9775 8950 60  0001 C CNN
+F 3 "" H 9775 8950 60  0001 C CNN
+	1    9775 8950
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	10450 8450 10450 8500
+	9425 7950 9575 7950
 Wire Wire Line
-	10450 8500 10450 8550
+	9425 7850 9425 7950
 Wire Wire Line
-	10200 7850 10200 7950
+	9325 7850 9325 7950
 Wire Wire Line
-	10200 7950 10150 7950
+	9325 7950 9275 7950
 Wire Wire Line
-	10150 7950 10150 8750
+	9275 7950 9275 9050
 Wire Wire Line
-	10150 8750 10150 9050
-Connection ~ 10150 8750
+	9275 9050 9275 9350
+Connection ~ 9275 9050
 Wire Wire Line
-	10450 8950 10450 9000
+	9275 9050 9400 9050
 Wire Wire Line
-	10450 9000 10450 9050
+	9575 9350 9475 9350
 Wire Wire Line
-	10450 9000 10800 9000
+	9575 9200 9575 9275
 Wire Wire Line
-	10800 9000 10800 8900
-Connection ~ 10450 9000
-$Comp
-L D D?
-U 1 1 59023436
-P 10800 8750
-F 0 "D?" H 10800 8850 50  0000 C CNN
-F 1 "D" H 10800 8650 50  0000 C CNN
-F 2 "" H 10800 8750 50  0000 C CNN
-F 3 "" H 10800 8750 50  0000 C CNN
-	1    10800 8750
-	0    -1   -1   0   
-$EndComp
+	9575 9275 9575 9350
+Connection ~ 9575 9275
 Wire Wire Line
-	10800 8600 10800 8500
+	9575 8450 9575 8500
 Wire Wire Line
-	10800 8500 10450 8500
-Connection ~ 10450 8500
-Text Notes 9300 9400 0    60   ~ 0
-protection: \nreverse polarity & short circuit
-$Comp
-L Q_PMOS_DGS Q?
-U 1 1 5902BE2B
-P 9500 8750
-F 0 "Q?" H 9750 8750 50  0000 R CNN
-F 1 "Q_PMOS_DGS" H 9850 8600 50  0000 R CNN
-F 2 "" H 9700 8850 50  0000 C CNN
-F 3 "" H 9500 8750 50  0000 C CNN
-	1    9500 8750
-	1    0    0    -1  
-$EndComp
+	9575 8500 9575 8575
 Wire Wire Line
-	9600 8450 9600 8500
+	9575 8575 9575 8650
 Wire Wire Line
-	9600 8500 9600 8550
-Wire Wire Line
-	9300 7950 9300 8750
-Wire Wire Line
-	9300 8750 9300 9050
-Connection ~ 9300 8750
-Wire Wire Line
-	9600 8950 9600 9000
-Wire Wire Line
-	9600 9000 9600 9050
-Wire Wire Line
-	9600 9000 9950 9000
-Wire Wire Line
-	9950 9000 9950 8900
-Connection ~ 9600 9000
-$Comp
-L D D?
-U 1 1 5902BE3B
-P 9950 8750
-F 0 "D?" H 9950 8850 50  0000 C CNN
-F 1 "D" H 9950 8650 50  0000 C CNN
-F 2 "" H 9950 8750 50  0000 C CNN
-F 3 "" H 9950 8750 50  0000 C CNN
-	1    9950 8750
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	9950 8600 9950 8500
-Wire Wire Line
-	9950 8500 9600 8500
-Connection ~ 9600 8500
-Wire Wire Line
-	9300 7950 9350 7950
-Wire Wire Line
-	9350 7950 9350 7850
-Text Notes 6900 9450 0    60   ~ 0
-10mF?
-Text Notes 9300 8550 0    60   ~ 0
-OR BALANCER
+	9575 8650 9575 8725
+Connection ~ 9575 8650
+Connection ~ 9575 8575
+Connection ~ 9575 8500
 $EndSCHEMATC

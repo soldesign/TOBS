@@ -1,4 +1,4 @@
-update=27.04.2017 11:22:00
+update=27.04.2017 11:43:12
 version=1
 last_client=kicad
 [pcbnew]
@@ -23,6 +23,8 @@ ModuleOutlineThickness=0.150000000000
 [cvpcb]
 version=1
 NetIExt=net
+[general]
+version=1
 [eeschema]
 version=1
 LibDir=
@@ -59,5 +61,4 @@ LibName29=valves
 LibName30=Libraries/arduinouno
 LibName31=Libraries/bq76920
 LibName32=Libraries/cd4051
-[general]
-version=1
+LibName33=Libraries/stl60p4llf6
