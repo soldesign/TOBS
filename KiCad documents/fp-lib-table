@@ -1,3 +1,4 @@
 (fp_lib_table
   (lib (name bachelorSMDs)(type KiCad)(uri "$(KIPRJMOD)\\Libraries\\bachelorSMDs.pretty")(options "")(descr ""))
+  (lib (name VCS_library)(type KiCad)(uri "$(KIPRJMOD)\\Libraries\\VCS_library.pretty")(options "")(descr ""))
 )

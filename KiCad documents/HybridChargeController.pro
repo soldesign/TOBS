@@ -1,4 +1,4 @@
-update=09.05.2017 14:22:05
+update=09.05.2017 15:59:02
 version=1
 last_client=kicad
 [pcbnew]
@@ -61,5 +61,6 @@ LibName31=Libraries/bq76920
 LibName32=Libraries/cd4051
 LibName33=Libraries/stl60p4llf6
 LibName34=Libraries/RQ3E100BNTB
+LibName35=Libraries/ipd90p04p4l-04
 [general]
 version=1
