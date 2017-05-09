@@ -1,4 +1,4 @@
-update=27.04.2017 17:45:01
+update=09.05.2017 14:22:05
 version=1
 last_client=kicad
 [pcbnew]
@@ -60,5 +60,6 @@ LibName30=Libraries/arduinouno
 LibName31=Libraries/bq76920
 LibName32=Libraries/cd4051
 LibName33=Libraries/stl60p4llf6
+LibName34=Libraries/RQ3E100BNTB
 [general]
 version=1
