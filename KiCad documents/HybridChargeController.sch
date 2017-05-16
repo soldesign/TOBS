@@ -464,9 +464,9 @@ F 3 "" H 9100 9200 50  0000 C CNN
 	1    9100 9200
 	0    1    1    0   
 $EndComp
-Text Label 7200 2350 2    60   ~ 0
+Text Label 6750 2350 2    60   ~ 0
 PV-
-Text Label 9950 1750 0    60   ~ 0
+Text Label 6875 1775 2    60   ~ 0
 S_PV_V
 $Comp
 L LM358 U4
@@ -492,23 +492,23 @@ S_PV_I
 $Comp
 L R R42
 U 1 1 58F03300
-P 9800 2000
-F 0 "R42" V 9880 2000 50  0000 C CNN
-F 1 "33k" V 9800 2000 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 9730 2000 50  0001 C CNN
-F 3 "" H 9800 2000 50  0000 C CNN
-	1    9800 2000
+P 6950 2025
+F 0 "R42" V 7030 2025 50  0000 C CNN
+F 1 "33k" V 6950 2025 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 6880 2025 50  0001 C CNN
+F 3 "" H 6950 2025 50  0000 C CNN
+	1    6950 2025
 	1    0    0    -1  
 $EndComp
 $Comp
 L R R41
 U 1 1 58F03306
-P 9800 1500
-F 0 "R41" V 9880 1500 50  0000 C CNN
-F 1 "100k" V 9800 1500 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 9730 1500 50  0001 C CNN
-F 3 "" H 9800 1500 50  0000 C CNN
-	1    9800 1500
+P 6950 1525
+F 0 "R41" V 7030 1525 50  0000 C CNN
+F 1 "100k" V 6950 1525 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 6880 1525 50  0001 C CNN
+F 3 "" H 6950 1525 50  0000 C CNN
+	1    6950 1525
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -588,8 +588,6 @@ F 3 "" H 11000 3550 50  0000 C CNN
 	1    11000 3550
 	0    1    1    0   
 $EndComp
-Text Label 9600 1150 2    60   ~ 0
-PV+
 Text Label 11700 1150 0    60   ~ 0
 COM+
 Text Label 11700 1350 0    60   ~ 0
@@ -627,27 +625,27 @@ F 3 "" H 12325 7300 50  0000 C CNN
 	1    12325 7300
 	0    -1   -1   0   
 $EndComp
-Text Label 10175 7500 3    60   ~ 0
-LOAD-
 Text Label 10075 7500 3    60   ~ 0
+LOAD-
+Text Label 10175 7500 3    60   ~ 0
 LOAD+
-Text Label 10725 7500 3    60   ~ 0
+Text Label 10625 7500 3    60   ~ 0
 PV-
 Text Label 12225 9000 3    60   ~ 0
 LA-
-Text Label 10625 8100 3    60   ~ 0
+Text Label 10725 8100 3    60   ~ 0
 PV+
 Text Label 12425 9000 3    60   ~ 0
 LA+
 $Comp
 L D D3
 U 1 1 58F0B98B
-P 10625 7950
-F 0 "D3" H 10625 8050 50  0000 C CNN
-F 1 "VSB2045Y-M3/54" H 10625 7850 50  0000 C CNN
-F 2 "Diodes_ThroughHole:D_P600_R-6_P12.70mm_Horizontal" H 10625 7950 50  0001 C CNN
-F 3 "" H 10625 7950 50  0000 C CNN
-	1    10625 7950
+P 10725 7950
+F 0 "D3" H 10725 8050 50  0000 C CNN
+F 1 "VSB2045Y-M3/54" H 10725 7850 50  0000 C CNN
+F 2 "Diodes_ThroughHole:D_P600_R-6_P12.70mm_Horizontal" H 10725 7950 50  0001 C CNN
+F 3 "" H 10725 7950 50  0000 C CNN
+	1    10725 7950
 	0    -1   -1   0   
 $EndComp
 Text Notes 9550 700  0    60   ~ 0
@@ -668,30 +666,30 @@ $EndComp
 $Comp
 L R R39
 U 1 1 58EE841A
-P 7500 2000
-F 0 "R39" V 7580 2000 50  0000 C CNN
-F 1 "100k" V 7500 2000 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 7430 2000 50  0001 C CNN
-F 3 "" H 7500 2000 50  0000 C CNN
-	1    7500 2000
+P 7950 2000
+F 0 "R39" V 8030 2000 50  0000 C CNN
+F 1 "100k" V 7950 2000 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 7880 2000 50  0001 C CNN
+F 3 "" H 7950 2000 50  0000 C CNN
+	1    7950 2000
 	-1   0    0    1   
 $EndComp
-Text Label 7000 1750 2    60   ~ 0
+Text Label 7600 1750 2    60   ~ 0
 SW_PV
 Text Notes 6500 800  0    60   ~ 0
 PV switch circuit \nswitch is open, when SW_PV is LOW
 $Comp
 L R R38
 U 1 1 58EE8440
-P 7150 1750
-F 0 "R38" V 7230 1750 50  0000 C CNN
-F 1 "10k" V 7150 1750 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 7080 1750 50  0001 C CNN
-F 3 "" H 7150 1750 50  0000 C CNN
-	1    7150 1750
+P 7750 1750
+F 0 "R38" V 7830 1750 50  0000 C CNN
+F 1 "10k" V 7750 1750 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 7680 1750 50  0001 C CNN
+F 3 "" H 7750 1750 50  0000 C CNN
+	1    7750 1750
 	0    1    1    0   
 $EndComp
-Text Label 7150 1150 2    60   ~ 0
+Text Label 6750 1150 2    60   ~ 0
 PV+
 Text Notes 9675 10825 0    139  ~ 28
 LI = Li-Ion\nLA = Lead-Acid
@@ -1071,7 +1069,7 @@ RST
 NoConn ~ 7000 2950
 NoConn ~ 7000 3150
 Text Label 8850 6900 1    60   ~ 0
-D8
+SW_PV
 Text Label 8750 6900 1    60   ~ 0
 D9
 $Comp
@@ -1327,7 +1325,7 @@ F 3 "" H 5075 9000 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	7150 1150 8300 1150
+	6750 1150 8300 1150
 Connection ~ 7850 1150
 Wire Wire Line
 	7850 1450 7850 1150
@@ -1342,14 +1340,14 @@ Wire Wire Line
 Connection ~ 8300 1450
 Wire Notes Line
 	6450 2500 6450 600 
-Connection ~ 7500 1750
+Connection ~ 7950 1750
 Wire Wire Line
-	7500 1750 7500 1850
+	7950 1750 7950 1850
 Wire Wire Line
-	7300 1750 8000 1750
-Connection ~ 7500 2350
+	7900 1750 8000 1750
+Connection ~ 7950 2350
 Wire Wire Line
-	7500 2150 7500 2350
+	7950 2350 7950 2150
 Connection ~ 8300 2350
 Wire Wire Line
 	8300 2350 8300 1950
@@ -1372,7 +1370,7 @@ Wire Notes Line
 Wire Notes Line
 	9400 600  12050 600 
 Wire Wire Line
-	10625 7500 10625 7800
+	10725 7500 10725 7800
 Wire Wire Line
 	12375 7600 12525 7600
 Wire Wire Line
@@ -1424,18 +1422,14 @@ Wire Wire Line
 Wire Wire Line
 	10300 2350 10300 1350
 Wire Wire Line
-	7200 2350 10300 2350
-Connection ~ 9800 1750
+	6750 2350 10300 2350
+Connection ~ 6950 1775
 Wire Wire Line
-	9950 1750 9800 1750
-Connection ~ 9800 2350
+	6875 1775 6950 1775
 Wire Wire Line
-	9800 2150 9800 2350
+	6950 1675 6950 1875
 Wire Wire Line
-	9800 1650 9800 1850
-Connection ~ 9800 1150
-Wire Wire Line
-	9800 1150 9800 1350
+	6950 1150 6950 1375
 Connection ~ 9100 8900
 Wire Wire Line
 	9050 8900 9100 8900
@@ -1904,4 +1898,8 @@ Wire Wire Line
 	2075 8300 1850 8300
 Text Label 1850 8300 2    60   ~ 0
 5V
+Connection ~ 6950 1150
+Wire Wire Line
+	6950 2175 6950 2350
+Connection ~ 6950 2350
 $EndSCHEMATC
