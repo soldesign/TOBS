@@ -1041,35 +1041,33 @@ $EndComp
 Text Notes 2175 4625 0    60   ~ 0
 15A max current measuring
 NoConn ~ 8150 6900
-Text Label 10925 6825 3    60   ~ 0
-D9
 $Comp
-L CONN_01X06 P4
+L CONN_01X05 P4
 U 1 1 5904BFED
 P 10775 6625
 F 0 "P4" H 10775 7025 50  0000 C CNN
 F 1 "Extra" V 10875 6625 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x06_Pitch2.54mm" H 10775 6625 50  0001 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x05_Pitch2.54mm" H 10775 6625 50  0001 C CNN
 F 3 "" H 10775 6625 50  0000 C CNN
 	1    10775 6625
 	0    -1   -1   0   
 $EndComp
-Text Label 10525 6825 3    60   ~ 0
+Text Label 10575 6825 3    60   ~ 0
 SCK
-Text Label 10625 6825 3    60   ~ 0
+Text Label 10675 6825 3    60   ~ 0
 MISO
-Text Label 10725 6825 3    60   ~ 0
+Text Label 10775 6825 3    60   ~ 0
 MOSI
-Text Label 10825 6825 3    60   ~ 0
+Text Label 10875 6825 3    60   ~ 0
 LED_BTN
-Text Label 11025 6825 3    60   ~ 0
+Text Label 10975 6825 3    60   ~ 0
 RST
 NoConn ~ 7000 2950
 NoConn ~ 7000 3150
 Text Label 8850 6900 1    60   ~ 0
 SW_PV
 Text Label 8750 6900 1    60   ~ 0
-D9
+Alert
 $Comp
 L R R3
 U 1 1 5906D0BF
