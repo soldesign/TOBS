@@ -154,7 +154,7 @@ U 1 1 58EE210F
 P 7350 7600
 F 0 "AU1" H 8050 7750 60  0000 C CNN
 F 1 "Uno Layout" H 8800 7550 60  0000 C CNN
-F 2 "Arduinos:ARDUINO_SHIELD_bigger_holes" H 7350 7600 60  0001 C CNN
+F 2 "Arduinos:ARDUINO_SHIELD_bigger_holes_no_outline" H 7350 7600 60  0001 C CNN
 F 3 "" H 7350 7600 60  0001 C CNN
 	1    7350 7600
 	1    0    0    -1  
@@ -784,13 +784,13 @@ VC5
 Text Label 3900 7575 0    60   ~ 0
 Alert
 Text Label 2650 7875 2    60   ~ 0
-SDA
+SDA3
 Text Label 2650 7975 2    60   ~ 0
-SCL
+SCL3
 Text Label 9350 8450 3    60   ~ 0
-SDA
+SDA5
 Text Label 9250 8450 3    60   ~ 0
-SCL
+SCL5
 $Comp
 L R R16
 U 1 1 58FC4FBF
@@ -1041,30 +1041,28 @@ $EndComp
 Text Notes 2175 4625 0    60   ~ 0
 15A max current measuring
 NoConn ~ 8150 6900
-Text Label 10975 6825 3    60   ~ 0
+Text Label 10925 6825 3    60   ~ 0
 D9
 $Comp
-L CONN_01X07 P4
+L CONN_01X06 P4
 U 1 1 5904BFED
 P 10775 6625
 F 0 "P4" H 10775 7025 50  0000 C CNN
 F 1 "Extra" V 10875 6625 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x07_Pitch2.54mm" H 10775 6625 50  0001 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x06_Pitch2.54mm" H 10775 6625 50  0001 C CNN
 F 3 "" H 10775 6625 50  0000 C CNN
 	1    10775 6625
 	0    -1   -1   0   
 $EndComp
-Text Label 10475 6825 3    60   ~ 0
+Text Label 10525 6825 3    60   ~ 0
 SCK
-Text Label 10575 6825 3    60   ~ 0
+Text Label 10625 6825 3    60   ~ 0
 MISO
-Text Label 10675 6825 3    60   ~ 0
+Text Label 10725 6825 3    60   ~ 0
 MOSI
-Text Label 10775 6825 3    60   ~ 0
-D5
-Text Label 10875 6825 3    60   ~ 0
-D8
-Text Label 11075 6825 3    60   ~ 0
+Text Label 10825 6825 3    60   ~ 0
+LED_BTN
+Text Label 11025 6825 3    60   ~ 0
 RST
 NoConn ~ 7000 2950
 NoConn ~ 7000 3150
@@ -1902,4 +1900,140 @@ Connection ~ 6950 1150
 Wire Wire Line
 	6950 2175 6950 2350
 Connection ~ 6950 2350
+$Comp
+L BSS138 Q15
+U 1 1 591C6530
+P 9575 4975
+F 0 "Q15" H 9775 5050 50  0000 L CNN
+F 1 "BSS138" H 9775 4975 50  0000 L CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23" H 9775 4900 50  0001 L CIN
+F 3 "" H 9575 4975 50  0000 L CNN
+	1    9575 4975
+	0    1    1    0   
+$EndComp
+$Comp
+L R R53
+U 1 1 591C6613
+P 9250 4725
+F 0 "R53" V 9330 4725 50  0000 C CNN
+F 1 "10k" V 9250 4725 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 9180 4725 50  0001 C CNN
+F 3 "" H 9250 4725 50  0000 C CNN
+	1    9250 4725
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R54
+U 1 1 591C6771
+P 9825 4725
+F 0 "R54" V 9905 4725 50  0000 C CNN
+F 1 "10k" V 9825 4725 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 9755 4725 50  0001 C CNN
+F 3 "" H 9825 4725 50  0000 C CNN
+	1    9825 4725
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9525 4425 9525 4775
+Wire Wire Line
+	8900 4425 9525 4425
+Wire Wire Line
+	9250 4425 9250 4575
+Connection ~ 9250 4425
+Text Label 8900 4425 2    60   ~ 0
+3.3V
+Wire Wire Line
+	9825 4575 9825 4425
+Wire Wire Line
+	9825 4425 9950 4425
+Text Label 9950 4425 0    60   ~ 0
+5V
+Wire Wire Line
+	9250 4875 9250 5500
+Wire Wire Line
+	9375 5075 9250 5075
+Connection ~ 9250 5075
+Wire Wire Line
+	9775 5075 9825 5075
+Wire Wire Line
+	9825 4875 9825 5500
+Connection ~ 9825 5075
+Text Label 9250 5500 3    60   ~ 0
+SDA3
+Text Label 9825 5500 3    60   ~ 0
+SDA5
+Text Label 8650 8450 3    60   ~ 0
+3.3V
+$Comp
+L BSS138 Q16
+U 1 1 591CB903
+P 11075 4975
+F 0 "Q16" H 11275 5050 50  0000 L CNN
+F 1 "BSS138" H 11275 4975 50  0000 L CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23" H 11275 4900 50  0001 L CIN
+F 3 "" H 11075 4975 50  0000 L CNN
+	1    11075 4975
+	0    1    1    0   
+$EndComp
+$Comp
+L R R55
+U 1 1 591CB909
+P 10750 4725
+F 0 "R55" V 10830 4725 50  0000 C CNN
+F 1 "10k" V 10750 4725 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 10680 4725 50  0001 C CNN
+F 3 "" H 10750 4725 50  0000 C CNN
+	1    10750 4725
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R56
+U 1 1 591CB90F
+P 11325 4725
+F 0 "R56" V 11405 4725 50  0000 C CNN
+F 1 "10k" V 11325 4725 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 11255 4725 50  0001 C CNN
+F 3 "" H 11325 4725 50  0000 C CNN
+	1    11325 4725
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	11025 4425 11025 4775
+Wire Wire Line
+	10400 4425 11025 4425
+Wire Wire Line
+	10750 4425 10750 4575
+Connection ~ 10750 4425
+Text Label 10400 4425 2    60   ~ 0
+3.3V
+Wire Wire Line
+	11325 4575 11325 4425
+Wire Wire Line
+	11325 4425 11450 4425
+Text Label 11450 4425 0    60   ~ 0
+5V
+Wire Wire Line
+	10750 4875 10750 5500
+Wire Wire Line
+	10875 5075 10750 5075
+Connection ~ 10750 5075
+Wire Wire Line
+	11275 5075 11325 5075
+Wire Wire Line
+	11325 4875 11325 5500
+Connection ~ 11325 5075
+Text Label 10750 5500 3    60   ~ 0
+SCL3
+Text Label 11325 5500 3    60   ~ 0
+SCL5
+Text Notes 8700 4200 0    60   ~ 0
+Levelshifter
+Wire Notes Line
+	8650 4100 8650 5900
+Wire Notes Line
+	8650 5900 11675 5900
+Wire Notes Line
+	11675 5900 11675 4100
+Wire Notes Line
+	11675 4100 8650 4100
 $EndSCHEMATC
