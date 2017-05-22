@@ -1145,8 +1145,6 @@ F 3 "" H 1600 10025 50  0000 C CNN
 	1    1600 10025
 	1    0    0    -1  
 $EndComp
-Text Notes 8525 8900 0    60   ~ 0
-value may change?
 Text Notes 2425 8575 0    60   ~ 0
 short!
 $Comp
@@ -2034,4 +2032,27 @@ Wire Notes Line
 	11675 5900 11675 4100
 Wire Notes Line
 	11675 4100 8650 4100
+Entry Wire Line
+	10250 6200 10350 6300
+$Comp
+L CONN_01X06 P?
+U 1 1 5922E01F
+P 11875 6625
+F 0 "P?" H 11875 6975 50  0000 C CNN
+F 1 "FTDI" V 11975 6625 50  0000 C CNN
+F 2 "" H 11875 6625 50  0000 C CNN
+F 3 "" H 11875 6625 50  0000 C CNN
+	1    11875 6625
+	0    -1   -1   0   
+$EndComp
+NoConn ~ 11625 6825
+NoConn ~ 12025 6825
+Text Label 11725 6825 3    60   ~ 0
+TX
+Text Label 11825 6825 3    60   ~ 0
+RX
+Text Label 11925 6825 3    60   ~ 0
+5V
+Text Label 12125 6825 3    60   ~ 0
+GND
 $EndSCHEMATC

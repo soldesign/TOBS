@@ -1,9 +1,9 @@
-(kicad_pcb (version 4) (host pcbnew 4.0.4+e1-6308~48~ubuntu15.10.1-stable)
+(kicad_pcb (version 4) (host pcbnew 4.0.4-stable)
 
   (general
     (links 248)
     (no_connects 2)
-    (area 97 39 189.000001 129.000001)
+    (area 99.924999 39.924999 187.075001 127.075001)
     (thickness 1.6)
     (drawings 41)
     (tracks 866)
@@ -4441,11 +4441,11 @@
   )
 
   (module MEI_logo:soldesign-logo (layer F.Cu) (tedit 0) (tstamp 591D98C5)
-    (at 163.3982 108.6358)
-    (fp_text reference G*** (at 0 0) (layer F.SilkS) hide
+    (at 161.1 109 180)
+    (fp_text reference G*** (at 0 0 180) (layer F.SilkS) hide
       (effects (font (thickness 0.3)))
     )
-    (fp_text value LOGO (at 0.75 0) (layer F.SilkS) hide
+    (fp_text value LOGO (at 0.75 0 180) (layer F.SilkS) hide
       (effects (font (thickness 0.3)))
     )
     (fp_poly (pts (xy 7.0866 -0.975742) (xy 7.23465 -0.972326) (xy 7.353536 -0.96815) (xy 7.447956 -0.962887)
@@ -4861,22 +4861,22 @@
       (xy 15.269597 -3.704432)) (layer F.SilkS) (width 0.01))
   )
 
-  (gr_text "Connectors: \n-great\n\nSilk: \n-since Board will be mounted upside down, question is if we should rotate all text 180°?\n\nPlacement: nice placement. \n-Lots of spare space. (I bet it would fit an Atmega328p with minimal components for optional placement.)\n- additional SPI connector makes sense there?\n\nRouting:\n- like the COM routing\n- 10mil traces are quite thin, could we think about  15mil?\n\nFootprints:\n- all holes the right size? (D2?)\n- \n\n" (at 193.9798 68.199) (layer F.SilkS)
+  (gr_text "Final check for prototype order:\n######################\nPlacement: nice placement. \n-Lots of spare space. (I bet it would fit an Atmega328p with minimal components for optional placement.)\n- additional SPI connector makes sense there?\n\nRouting:\n- like the COM routing\n- 10mil traces are quite thin, could we think about  15mil?\n\nFootprints:\n- all holes the right size? (D2?)\n- \n\n" (at 193.9798 68.199) (layer Eco2.User)
     (effects (font (size 1.5 1.5) (thickness 0.3)) (justify left))
   )
   (gr_text "karana.me-soldesign.com\nBerlin, June 2017" (at 183.388 103.378 90) (layer F.SilkS)
     (effects (font (size 1.27 1.27) (thickness 0.2032)))
   )
-  (gr_text v.01 (at 157.6832 69.5198) (layer F.SilkS)
+  (gr_text v.01 (at 124.1 65.8 180) (layer F.SilkS)
     (effects (font (size 1.27 1.27) (thickness 0.254)))
   )
-  (gr_text "Open Energy Access" (at 156.1846 112.649) (layer F.SilkS)
+  (gr_text "Open Energy Access" (at 158.1 104.4 180) (layer F.SilkS)
     (effects (font (size 1.27 1.27) (thickness 0.2032)))
   )
-  (gr_text "made for Karana by" (at 157.861 105.2068) (layer F.SilkS)
+  (gr_text "made for Karana by" (at 166.3 112.5 180) (layer F.SilkS)
     (effects (font (size 1.5 1.5) (thickness 0.25)))
   )
-  (gr_text "Hybrid Charge Controller" (at 140.4 67.3) (layer F.SilkS)
+  (gr_text "Hybrid Charge Controller" (at 141.2 68.2 180) (layer F.SilkS)
     (effects (font (size 2 2) (thickness 0.4)))
   )
   (gr_line (start 101.3 115) (end 103.5 115) (angle 90) (layer F.SilkS) (width 0.2))
