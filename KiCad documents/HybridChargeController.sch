@@ -1064,9 +1064,9 @@ Text Label 10975 6825 3    60   ~ 0
 RST
 NoConn ~ 7000 2950
 NoConn ~ 7000 3150
-Text Label 8850 6900 1    60   ~ 0
-SW_PV
 Text Label 8750 6900 1    60   ~ 0
+SW_PV
+Text Label 8850 6900 1    60   ~ 0
 Alert
 $Comp
 L R R3
