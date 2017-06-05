@@ -2032,8 +2032,6 @@ Wire Notes Line
 	11675 5900 11675 4100
 Wire Notes Line
 	11675 4100 8650 4100
-Entry Wire Line
-	10250 6200 10350 6300
 $Comp
 L CONN_01X06 P7
 U 1 1 5922E01F
@@ -2055,4 +2053,6 @@ Text Label 11925 6825 3    60   ~ 0
 5V
 Text Label 12125 6825 3    60   ~ 0
 GND
+Text Notes 8850 4025 0    60   ~ 0
+Regout would have been better here
 $EndSCHEMATC
