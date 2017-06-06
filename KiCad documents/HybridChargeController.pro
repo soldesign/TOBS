@@ -1,4 +1,4 @@
-update=05/06/2017 16:17:58
+update=06/06/2017 13:51:38
 version=1
 last_client=kicad
 [pcbnew]
@@ -62,5 +62,15 @@ LibName32=Libraries/cd4051
 LibName33=Libraries/stl60p4llf6
 LibName34=Libraries/RQ3E100BNTB
 LibName35=Libraries/ipd90p04p4l-04
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=
+SpiceForceRefPrefix=0
+SpiceUseNetNumbers=0
+LabSize=60
 [general]
 version=1
