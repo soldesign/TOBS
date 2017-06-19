@@ -1,4 +1,4 @@
-update=10/06/2017 20:15:21
+update=07/06/2017 12:51:09
 version=1
 last_client=kicad
 [pcbnew]
@@ -56,21 +56,5 @@ LibName26=opto
 LibName27=atmel
 LibName28=contrib
 LibName29=valves
-LibName30=Libraries/arduinouno
-LibName31=Libraries/bq76920
-LibName32=Libraries/cd4051
-LibName33=Libraries/stl60p4llf6
-LibName34=Libraries/RQ3E100BNTB
-LibName35=Libraries/ipd90p04p4l-04
-[schematic_editor]
-version=1
-PageLayoutDescrFile=
-PlotDirectoryName=
-SubpartIdSeparator=0
-SubpartFirstId=65
-NetFmtName=
-SpiceForceRefPrefix=0
-SpiceUseNetNumbers=0
-LabSize=60
 [general]
 version=1

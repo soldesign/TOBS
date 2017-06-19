@@ -633,19 +633,19 @@ Text Label 2950 6650 3    60   ~ 0
 PV-
 Text Label 4225 7475 3    60   ~ 0
 LA-
-Text Label 3050 7250 3    60   ~ 0
+Text Label 3050 7075 3    60   ~ 0
 PV+
 Text Label 4425 7475 3    60   ~ 0
 LA+
 $Comp
 L D D3
 U 1 1 58F0B98B
-P 3050 7100
-F 0 "D3" H 3050 7200 50  0000 C CNN
-F 1 "VSB2045Y-M3/54" H 3050 7000 50  0000 C CNN
-F 2 "Diodes_ThroughHole:D_P600_R-6_P12.70mm_Horizontal" H 3050 7100 50  0001 C CNN
-F 3 "" H 3050 7100 50  0000 C CNN
-	1    3050 7100
+P 3050 6925
+F 0 "D3" H 3050 7025 50  0000 C CNN
+F 1 "VSB2045Y-M3/54" H 3050 6825 50  0000 C CNN
+F 2 "Diodes_ThroughHole:D_P600_R-6_P12.70mm_Horizontal" H 3050 6925 50  0001 C CNN
+F 3 "" H 3050 6925 50  0000 C CNN
+	1    3050 6925
 	0    -1   -1   0   
 $EndComp
 Text Notes 6425 2450 0    60   ~ 0
@@ -1516,7 +1516,7 @@ Wire Notes Line
 Wire Notes Line
 	6225 2350 7700 2350
 Wire Wire Line
-	3050 6650 3050 6950
+	3050 6650 3050 6775
 Wire Wire Line
 	4375 6075 4525 6075
 Wire Wire Line
@@ -1801,8 +1801,6 @@ Wire Wire Line
 Wire Wire Line
 	5050 3200 5375 3200
 Connection ~ 5050 3200
-Wire Wire Line
-	2875 2600 3600 2600
 Wire Wire Line
 	3600 2600 5050 2600
 Wire Wire Line
@@ -2239,8 +2237,7 @@ Wire Wire Line
 Wire Wire Line
 	2650 700  4475 700 
 Wire Wire Line
-	2875 2550 2875 2600
-Connection ~ 3600 2600
+	2875 2550 2875 2900
 Wire Wire Line
 	6275 4425 5975 4425
 Wire Wire Line
@@ -2263,4 +2260,10 @@ Wire Notes Line
 	3425 5625 5075 5625
 Wire Notes Line
 	5075 5625 5075 8100
+Wire Wire Line
+	2875 2900 3175 2900
+Text Notes 1300 7350 0    60   ~ 0
+hier vielleicht 100?
+Text Notes 3625 4675 0    60   ~ 0
+muss größer sein für 25V
 $EndSCHEMATC
