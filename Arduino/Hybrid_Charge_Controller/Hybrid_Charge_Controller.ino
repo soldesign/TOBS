@@ -152,6 +152,11 @@ unsigned long lastprint = 0;
 bq769x0 BMS(bq76920, BMS_I2C_ADDRESS);    // balancer object
 
 void setup() {
+	//miscelaneous--------------
+	TCCR1B = (TCCR1B & 0b11111000) | 0x05; //PWM frequency set to 60Hz
+	Serial.begin(115200);
+	Serial.println(F("Startup..."));
+
 	//balancer setup
 	int err = BMS.begin(BMS_ALERT_PIN, BMS_BOOT_PIN);
 
@@ -179,10 +184,7 @@ void setup() {
 	digitalWrite(LA_SW_PIN, LOW); //LA on
 	digitalWrite(PV_SW_PIN, LOW); //PV off
 	digitalWrite(LD_SW_PIN, LOW); //LD off
-	//miscelaneous--------------
-	TCCR1B = (TCCR1B & 0b11111000) | 0x05; //PWM frequency set to 60Hz
-	Serial.begin(115200);
-	Serial.println(F("Startup..."));
+
 }
 
 void loop() {
@@ -488,13 +490,11 @@ void update_battery_state(){
 	if(next_battery == LA_BATTERY){
 		li_state = LI_IDLE;
 		if(sys_state == SYS_IDLE & la_state != LA_ABSORP){
-			// for testing
 			la_state = LA_IDLE;
 		}else if(sys_state == SYS_DISCHARGE){
 			la_state = LA_DISCHARGE;
 		}
 	}else{
-		// for testing
 		la_state = LA_IDLE;
 		if(sys_state == SYS_IDLE){
 			li_state = LI_IDLE;
