@@ -1,11 +1,12 @@
 //--------INCLUDES--------------
 #include <bq769x0.h>    // Library for Texas Instruments bq76920 battery management IC
+#include "HCC_structs.h" //all struct variable definitions
 
 //--------FOR TESTING--------------
 unsigned long lastswitch = 0;
 
 //--------DEBUG---------------------
-const int PRINT_INTERVAL = 1000;
+const int PRINT_INTERVAL = 500;
 unsigned long led_lighttime = 1000; //turn on led for 1 sec on startup
 
 //--------protection ratings------------
@@ -37,16 +38,18 @@ const double LD_I_SUMMAND = 8210.8356;
 const double TEMPERATURE_FACTOR  = 0.2504;
 const double TEMPERATURE_SUMMAND = -20.51;
 
+const double OWN_CONSUMPTION = 20.0;
 //--------charge protcoll values----------
 //const double V_ABS = 14650; //absorption voltage
-const double V_ABS = 12300; //for testing
+const double V_ABS = 12600; //for testing
 const double V_EQU = 15500; //equalization voltage
 //const double V_FLT = 13250; //float voltage
 const double V_FLT = 12500; //for testing
-const double LA_I_MIN_ABSORP = 10; // C-rate/100
+const double LA_I_MIN_ABSORP = 20; // C-rate/100
 const double PV_VOLTAGE_THRESHOLD = 100; //100mV PV v must be higher then actual battery voltage
-double la_soc = 100;
-double li_soc = 100;
+//for testing some values
+double la_soc = 80;
+double li_soc = 90;
 
 //---------LA state definitions-------------
 const byte LA_IDLE = 0;
@@ -75,7 +78,7 @@ const byte SYS_IDLE = 0;
 const byte SYS_CHARGE = 1;
 const byte SYS_DISCHARGE = 2;
 
-const double SYS_IDLE_THRESHOLD = 15; //+-20mA don't count as charge or discharge THIS CAN NOT BE SMALLER THAN LA_I_MIN_ABSORP
+const double SYS_IDLE_THRESHOLD = 30; //+-20mA don't count as charge or discharge THIS CAN NOT BE SMALLER THAN LA_I_MIN_ABSORP
 
 //---------state variables-------------
 byte la_state = 0;
@@ -110,20 +113,19 @@ const byte LED_BTN_PIN = 5; //led and button pin
 const byte TEMPERATURE_PIN = 21; //A7
 
 //-----------PWM PI controller values-----------
-const double V_KP = 500; //p-factor
-const double V_KI = 500; //i-factor
+const double V_KP = 0.05; //p-factor
+const double V_KI = 0.1; //i-factor
 const double V_DMIN = 0;	   	//
-const double V_DO = 500; 	//
+const double V_DO = 0.5; 	//
 
 const double I_KP = 0.05; //p-factor
 const double I_KI = 0.05; //i-factor
 const double I_DMIN = 0;	//
 const double I_DO = 0.5; 	//
 
-double v_d = 0;
-double v_sum_e = 0;
-double i_d = 0;
-double i_sum_e = 0;
+pi_vals v_pi = {0, 0};
+pi_vals i_pi = {0, 0};
+
 double duty_cycle = 255;
 
 //-----------------measurement------------------
@@ -180,14 +182,14 @@ void setup() {
 	//miscelaneous--------------
 	TCCR1B = (TCCR1B & 0b11111000) | 0x05; //PWM frequency set to 60Hz
 	Serial.begin(115200);
-
+	Serial.println(F("Startup..."));
 }
 
 void loop() {
 	//some excluded for testing
 	measure();            	 	// read all sensor data
 	protection();				//software protection for all devices
-	//BMS.update();  				// should be called at least every 250 ms
+	BMS.update();  				// should be called at least every 250 ms
 	calculate_SOCs();			// SOCs for both batteries
 	set_sys_state();			// dis-/charging/idle
 	select_battery();       	// LA or LI
@@ -199,10 +201,11 @@ void loop() {
 	led_handler();				// turn led on or off
 
 	//PI tuning
-
-	Serial.print(la_v);
-	Serial.print(" ");
-	Serial.println(duty_cycle*10);
+	// Serial.print(la_v);
+	// Serial.print(" ");
+	// Serial.print(la_state);
+	// Serial.print(" ");
+	// Serial.println(duty_cycle);
 }
 
 void measure(){
@@ -338,7 +341,7 @@ void protection(){
 	}
 
 	//check if "current is lost somewhere"
-	measure_mistake = pv_i+la_i+li_i-ld_i;
+	measure_mistake = pv_i+la_i+li_i-ld_i - OWN_CONSUMPTION;
 	if(abs(measure_mistake) > SYS_MEASUREMENT_INACCURACY){
 		measure_error(measure_mistake);
 	}
@@ -424,8 +427,8 @@ void measure_error(double mistake){
 
 void calculate_SOCs(){
 	//something for testing
-	la_soc = 80;
-	li_soc = 100;
+	la_soc = la_soc - la_i/1000;
+	li_soc = li_soc - li_i/1000;
 }
 
 void set_sys_state(){
@@ -467,7 +470,7 @@ void select_battery(){
 			}
 		break;
 	}
-
+	update_battery_state();
 	/*
 	//switch every 2 sec for testing
 	if(millis()> lastswitch + 2000){ 
@@ -479,7 +482,26 @@ void select_battery(){
 		}
 	}
 	*/
+}
 
+void update_battery_state(){
+	if(next_battery == LA_BATTERY){
+		li_state = LI_IDLE;
+		if(sys_state == SYS_IDLE & la_state != LA_ABSORP){
+			// for testing
+			la_state = LA_IDLE;
+		}else if(sys_state == SYS_DISCHARGE){
+			la_state = LA_DISCHARGE;
+		}
+	}else{
+		// for testing
+		la_state = LA_IDLE;
+		if(sys_state == SYS_IDLE){
+			li_state = LI_IDLE;
+		}else if(sys_state == SYS_DISCHARGE){
+			li_state = LI_DISCHARGE;
+		}
+	}
 }
 
 void switchto_battery(){
@@ -496,7 +518,6 @@ void switchto_battery(){
 				if(ld_state == LD_ON){
 					digitalWrite(LD_SW_PIN, HIGH); 	//turn LOAD on if its supposed to be on
 				}
-				li_state = LI_IDLE; 
 			break;
 			
 			case LI_BATTERY: 
@@ -510,19 +531,30 @@ void switchto_battery(){
 				if(ld_state == LD_ON){
 					digitalWrite(LD_SW_PIN, HIGH); 	//turn LOAD on if its supposed to be on
 				}
-				la_state = LA_IDLE;
 			break;
 		}
-		
 		current_battery = next_battery;
 	}
 }
 
 void charge_protocol(){
-	//only execute if LA is charging 
-	if(pv_power_available() && current_battery == LA_BATTERY){
-		select_chargemode();
-		execute_chargemode();
+	//only execute if PV power is available
+	if(pv_power_available()){
+		if(current_battery == LA_BATTERY){
+			pv_state = 1;
+			select_chargemode();
+			execute_chargemode();
+		}else{
+			//LI_charging
+		}
+	}else{
+		pv_state = 0;
+		if(sys_state == SYS_IDLE){
+			la_state = LA_IDLE;
+		}else if(sys_state == SYS_DISCHARGE){
+			la_state = LA_DISCHARGE;
+		}
+
 	}
 }
 
@@ -535,28 +567,33 @@ bool pv_power_available(){
 }
 
 void select_chargemode(){
-	if(la_v <= V_ABS){
-		la_state = LA_BULK;
-	}else{
-		if(la_state == LA_EQUALIZE){
-			if(la_i<=LA_I_MIN_ABSORP){
-				la_soc = 100;
-				la_state = LA_FLOAT;
-			}else{
-				la_state = LA_EQUALIZE;
-			}
-		}else if(la_state == LA_ABSORP){
-			if(la_i<=LA_I_MIN_ABSORP){
-				la_soc = 100;
-				la_state = LA_FLOAT;
-			}else{
-				la_state = LA_ABSORP;
-			}
+	//expanation of this is in the thesis
+	if(la_state == LA_FLOAT){
+		la_state = LA_FLOAT;
+	}else{	
+		if(la_v <= (V_ABS-100) & la_state != LA_ABSORP){
+			la_state = LA_BULK;
 		}else{
-			if(equalize_due()){
-				la_state = LA_EQUALIZE;
+			if(la_state == LA_EQUALIZE){
+				if((la_i*-1)<=LA_I_MIN_ABSORP){
+					la_soc = 100;
+					la_state = LA_FLOAT;
+				}else{
+					la_state = LA_EQUALIZE;
+				}
+			}else if(la_state == LA_ABSORP){
+				if(la_i*-1<=LA_I_MIN_ABSORP){
+					la_soc = 100;
+					la_state = LA_FLOAT;
+				}else{
+					la_state = LA_ABSORP;
+				}
 			}else{
-				la_state = LA_ABSORP;
+				if(equalize_due()){
+					la_state = LA_EQUALIZE;
+				}else{
+					la_state = LA_ABSORP;
+				}
 			}
 		}
 	}
@@ -586,30 +623,27 @@ void execute_chargemode(){
 
 void bulkmode(){
 	//la current up to LA_I_MAX_CHARGE with PI controller
-	double d;
-	d = pi_controller(LA_I_MAX_CHARGE, la_i, I_KP, I_KI, i_sum_e, I_DMIN, I_DO, i_d);
-	duty_cycle = d*255;
+	//i_pi = pi_controller(LA_I_MAX_CHARGE, la_i, I_KP, I_KI, I_DMIN, I_DO, i_pi);
+	//duty_cycle = i_pi.d*255;
+	duty_cycle = 255;
 }
 
 void absorpmode(){
 	//la voltage limited to hold at V_ABS with PI controller
-	double d;
-	d = pi_controller(V_ABS, la_v, V_KP, V_KI, v_sum_e, V_DMIN, V_DO, v_d);
-	duty_cycle = d*255;
+	v_pi = pi_controller(V_ABS, la_v, V_KP, V_KI, V_DMIN, V_DO, v_pi);
+	duty_cycle = v_pi.d*255;
 }
 
 void floatmode(){
 	//la voltage limited to hold at V_FLT with PI controller
-	double d;
-	d = pi_controller(V_FLT, la_v, V_KP, V_KI, v_sum_e, V_DMIN, V_DO, v_d);
-	duty_cycle = d*255;
+	v_pi = pi_controller(V_FLT, la_v, V_KP, V_KI, V_DMIN, V_DO, v_pi);
+	duty_cycle = v_pi.d*255;
 }
 
 void equalizemode(){
-	//la voltage limited to hold at V_EQU with PI controller
-	double d;
-	d = pi_controller(V_EQU, la_v, V_KP, V_KI, v_sum_e, V_DMIN, V_DO, v_d);
-	duty_cycle = d*255;
+	// la voltage limited to hold at V_EQU with PI controller
+	v_pi = pi_controller(V_EQU, la_v, V_KP, V_KI, V_DMIN, V_DO, v_pi);
+	duty_cycle = v_pi.d*255;
 }
 
 void load_control(){
@@ -621,11 +655,11 @@ void load_control(){
 }
 
 void pv_control(){
-	//only allow pv switch to open, if voltage is high enough and pv_state = 1
-	if(pv_power_available() & pv_state == 1){
-		analogWrite(PV_SW_PIN,duty_cycle);
+	//only allow pv switch to open, if pv_state = 1
+	if(pv_state == 1){
+		analogWrite(PV_SW_PIN,duty_cycle);	//apply duty cyle
 	}else{
-		analogWrite(PV_SW_PIN, 0);
+		digitalWrite(PV_SW_PIN, LOW); //turn off pv pin
 	}
 }
 
@@ -647,22 +681,21 @@ double active_bat_i(){
 	}
 }
 
-double pi_controller(double setpoint, double process_variable, double kp, double ki, double sum_e, double dmin, double d_o, double d){
+pi_vals pi_controller(double setpoint, double process_variable, double kp, double ki, double dmin, double d_o, pi_vals output){
 	//d und sum_e sollten für die nächste runde gespeichert werden...
 	double e = setpoint/1000 - process_variable/1000;
 	//Serial.println(e);
-	if(d<1){
-		sum_e = sum_e + e;
+	if(output.d<1){
+		output.sum_e = output.sum_e + e;
 	}
-	Serial.println(e);
-	d=d_o + kp*e + ki*sum_e;
-	if(d>=1){
-		d = 1;
+	output.d=d_o + kp*e + ki*output.sum_e;
+	if(output.d>=1){
+		output.d = 1;
 	}
-	if(d<dmin){
-		d = dmin;
+	if(output.d<dmin){
+		output.d = dmin;
 	}
-	return d;
+	return output;
 }
 
 void led_handler(){
@@ -710,6 +743,12 @@ void print_data(){
 			Serial.print(F("ld_state: "));
 			Serial.println(ld_state);
 
+			Serial.print(F("la_soc: "));
+			Serial.println(la_soc);
+			Serial.print(F("li_state: "));
+			Serial.println(li_soc);
+			
+
 			//measured data-------------------
 			Serial.println(F("----------------MEASUREMENTS"));
 			Serial.print(F("la_v: "));
@@ -738,13 +777,13 @@ void print_data(){
 			Serial.print(F("duty_cycle: "));
 			Serial.println(duty_cycle);
 			Serial.print(F("v_d: "));
-			Serial.println(v_d);
+			Serial.println(v_pi.d);
 			Serial.print(F("v_sum_e: "));
-			Serial.println(v_sum_e);
+			Serial.println(v_pi.sum_e);
 			Serial.print(F("i_d: "));
-			Serial.println(i_d);
+			Serial.println(i_pi.d);
 			Serial.print(F("i_sum_e: "));
-			Serial.println(i_sum_e);
+			Serial.println(i_pi.sum_e);
 
 
 			//other
@@ -754,45 +793,46 @@ void print_data(){
 			//LI-ION
 			//BMS.printRegisters();
 		}else{
-			Serial.print(millis());
-			Serial.print(" ");
+			// Serial.print(millis());
+			// Serial.printF((" "));
 			Serial.print(current_battery);
 			Serial.print(F(" "));
 			Serial.print(sys_state);
 			Serial.print(F(" "));
 			Serial.print(la_state);
 			Serial.print(F(" "));
-			Serial.print(li_state);
-			Serial.print(F(" "));
+			// Serial.print(li_state);
+			// Serial.print(F(" "));
 			Serial.print(pv_state);
 			Serial.print(F(" "));
 			Serial.print(ld_state);
 
 			//measured data-------------------
 			Serial.print(F(" "));
-			Serial.print(la_v);
+			Serial.print(la_v/1000);
 			Serial.print(F(" "));
-			Serial.print(la_i);
+			Serial.print(la_i/100);
 			Serial.print(F(" "));
-			Serial.print(li_v);
-			Serial.print(F(" "));
-			Serial.print(li_i);
-			Serial.print(F(" "));
-			Serial.print(pv_v);
-			Serial.print(F(" "));
-			Serial.print(pv_i);
-			Serial.print(F(" "));
-			Serial.print(ld_i);
-			Serial.print(F(" "));
-			Serial.print(temperature);
-			Serial.print(" ");
-			Serial.print(ld_i - pv_i);
-			Serial.print(F(" "));
-			Serial.print(measure_mistake);
-
+			// Serial.print(li_v);
+			// Serial.print(F(" "));
+			// Serial.print(li_i);
+			// Serial.print(F(" "));
+			// Serial.print(pv_v);
+			// Serial.print(F(" "));
+			// Serial.print(pv_i);
+			// Serial.print(F(" "));
+			// Serial.print(ld_i);
+			// Serial.print(F(" "));
+			// Serial.print(temperature);
+			// Serial.print(" ");
+			// Serial.print(ld_i - pv_i);
+			// Serial.print(F(" "));
+			// Serial.print(measure_mistake);
+			// Serial.print(F(" "));
 			//other
-			Serial.print(F(" "));
-			Serial.println(duty_cycle);
+			
+			Serial.print(duty_cycle/255);
+			Serial.println();
 		}
 	}
 }        
