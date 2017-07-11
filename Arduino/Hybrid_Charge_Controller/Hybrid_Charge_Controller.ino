@@ -149,7 +149,7 @@ bool multiplex_state_c = 0;
 unsigned long lastprint = 0;
 
 //-----------------objects------------------
-bq769x0 BMS(bq76920, BMS_I2C_ADDRESS);    // balancer object
+bq769x0 BMS(bq76920, BMS_I2C_ADDRESS);    // balancer object BMS = battery management system
 
 void setup() {
 	//miscelaneous--------------
