@@ -41,15 +41,15 @@ const double TEMPERATURE_SUMMAND = -20.51;
 const double OWN_CONSUMPTION = 20.0;
 //--------charge protcoll values----------
 //const double V_ABS = 14650; //absorption voltage
-const double V_ABS = 12600; //for testing
+const double V_ABS = 12100; //for testing
 const double V_EQU = 15500; //equalization voltage
 //const double V_FLT = 13250; //float voltage
-const double V_FLT = 12500; //for testing
+const double V_FLT = 12000; //for testing
 const double LA_I_MIN_ABSORP = 20; // C-rate/100
 const double PV_VOLTAGE_THRESHOLD = 100; //100mV PV v must be higher then actual battery voltage
 //for testing some values
 double la_soc = 80;
-double li_soc = 90;
+double li_soc = 98;
 
 //---------LA state definitions-------------
 const byte LA_IDLE = 0;
@@ -195,7 +195,7 @@ void loop() {
 	calculate_SOCs();			// SOCs for both batteries
 	set_sys_state();			// dis-/charging/idle
 	select_battery();       	// LA or LI
-	//switchto_battery();			// LA or LI
+	switchto_battery();			// LA or LI
 	charge_protocol();      	// pwm charging of LA
 	load_control();				// load on/off
   	pv_control();				//duty cycle here
@@ -212,12 +212,22 @@ void loop() {
 
 void measure(){
 	la_v = get_value(1);
-	la_i = get_value(2);
+	la_i = -1 * get_value(2);
 	pv_v = get_value(3);
 	pv_i = get_value(4);
 	ld_i = get_value(5);
 	li_v = BMS.getBatteryVoltage();
+
+	//ausreißer problem
+	double last_li_i = li_i;
 	li_i = BMS.getBatteryCurrent();
+	if(li_i > last_li_i + 1000){
+		li_i = last_li_i;
+	}
+	if(li_i < last_li_i - 1000){
+		li_i = last_li_i;
+	}	
+
 	temperature = get_temperature();
 }
 
@@ -343,7 +353,7 @@ void protection(){
 	}
 
 	//check if "current is lost somewhere"
-	measure_mistake = pv_i+la_i+li_i-ld_i - OWN_CONSUMPTION;
+	measure_mistake = pv_i+la_i+li_i-ld_i + OWN_CONSUMPTION;
 	if(abs(measure_mistake) > SYS_MEASUREMENT_INACCURACY){
 		measure_error(measure_mistake);
 	}
@@ -429,8 +439,8 @@ void measure_error(double mistake){
 
 void calculate_SOCs(){
 	//something for testing
-	la_soc = la_soc - la_i/1000;
-	li_soc = li_soc - li_i/1000;
+	la_soc = la_soc + la_i/9000;
+	li_soc = li_soc + li_i/9000;
 }
 
 void set_sys_state(){
@@ -546,6 +556,8 @@ void charge_protocol(){
 			execute_chargemode();
 		}else{
 			//LI_charging
+			pv_state = 1;
+			li_state = LI_CHARGE;
 		}
 	}else{
 		pv_state = 0;
@@ -575,14 +587,14 @@ void select_chargemode(){
 			la_state = LA_BULK;
 		}else{
 			if(la_state == LA_EQUALIZE){
-				if((la_i*-1)<=LA_I_MIN_ABSORP){
+				if((la_i)<=LA_I_MIN_ABSORP){
 					la_soc = 100;
 					la_state = LA_FLOAT;
 				}else{
 					la_state = LA_EQUALIZE;
 				}
 			}else if(la_state == LA_ABSORP){
-				if(la_i*-1<=LA_I_MIN_ABSORP){
+				if(la_i<=LA_I_MIN_ABSORP){
 					la_soc = 100;
 					la_state = LA_FLOAT;
 				}else{
@@ -714,7 +726,7 @@ void led_set(unsigned long shinetime){
 }
 
 void print_data(){
-	bool plotting_format = 0;
+	bool plotting_format = 1;
 	if(millis()> lastprint + PRINT_INTERVAL){ //only print if last print was PRINT_INTERVAL millisec ago
 		lastprint = millis();
 		
@@ -745,7 +757,7 @@ void print_data(){
 
 			Serial.print(F("la_soc: "));
 			Serial.println(la_soc);
-			Serial.print(F("li_state: "));
+			Serial.print(F("li_soc: "));
 			Serial.println(li_soc);
 			
 
@@ -776,14 +788,14 @@ void print_data(){
 			Serial.println(F("--------------PI-CONTROLLER"));
 			Serial.print(F("duty_cycle: "));
 			Serial.println(duty_cycle);
-			Serial.print(F("v_d: "));
-			Serial.println(v_pi.d);
-			Serial.print(F("v_sum_e: "));
-			Serial.println(v_pi.sum_e);
-			Serial.print(F("i_d: "));
-			Serial.println(i_pi.d);
-			Serial.print(F("i_sum_e: "));
-			Serial.println(i_pi.sum_e);
+			// Serial.print(F("v_d: "));
+			// Serial.println(v_pi.d);
+			// Serial.print(F("v_sum_e: "));
+			// Serial.println(v_pi.sum_e);
+			// Serial.print(F("i_d: "));
+			// Serial.println(i_pi.d);
+			// Serial.print(F("i_sum_e: "));
+			// Serial.println(i_pi.sum_e);
 
 
 			//other
@@ -793,36 +805,39 @@ void print_data(){
 			//LI-ION
 			//BMS.printRegisters();
 		}else{
-			// Serial.print(millis());
-			// Serial.printF((" "));
+			Serial.print(millis());
+			Serial.print(F(" "));
 			Serial.print(current_battery);
 			Serial.print(F(" "));
 			Serial.print(sys_state);
 			Serial.print(F(" "));
 			Serial.print(la_state);
 			Serial.print(F(" "));
-			// Serial.print(li_state);
-			// Serial.print(F(" "));
+			Serial.print(li_state);
+			Serial.print(F(" "));
 			Serial.print(pv_state);
 			Serial.print(F(" "));
 			Serial.print(ld_state);
-
+			Serial.print(F(" "));
+			Serial.print(la_soc);
+			Serial.print(F(" "));
+			Serial.print(li_soc);
+			Serial.print(F(" "));
 			//measured data-------------------
+			Serial.print(la_v);
 			Serial.print(F(" "));
-			Serial.print(la_v/1000);
+			Serial.print(la_i);
 			Serial.print(F(" "));
-			Serial.print(la_i/100);
+			Serial.print(li_v);
 			Serial.print(F(" "));
-			// Serial.print(li_v);
-			// Serial.print(F(" "));
-			// Serial.print(li_i);
-			// Serial.print(F(" "));
-			// Serial.print(pv_v);
-			// Serial.print(F(" "));
-			// Serial.print(pv_i);
-			// Serial.print(F(" "));
-			// Serial.print(ld_i);
-			// Serial.print(F(" "));
+			Serial.print(li_i);
+			Serial.print(F(" "));
+			Serial.print(pv_v);
+			Serial.print(F(" "));
+			Serial.print(pv_i);
+			Serial.print(F(" "));
+			Serial.print(ld_i);
+			Serial.print(F(" "));
 			// Serial.print(temperature);
 			// Serial.print(" ");
 			// Serial.print(ld_i - pv_i);
