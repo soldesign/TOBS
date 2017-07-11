@@ -1,32 +1,31 @@
-Reference; Quantity; Value; Footprint
-AU1 ;1;Uno Layout;Arduinos:ARDUINO_SHIELD_bigger_holes
-C1 C2 C3 C4 C6 C7 ;6;1µ;Capacitors_SMD:C_0603_HandSoldering
-C11 C9 ;2;10µ;Capacitors_ThroughHole:CP_Radial_D5.0mm_P2.00mm
-C10 C5 C8 ;3;0.1µ;Capacitors_SMD:C_0603_HandSoldering
-D1 D2 ;2;1N4148-T;Diodes_ThroughHole:D_DO-35_SOD27_P10.16mm_Horizontal
-D3 ;1;VSB2045Y-M3/54;Diodes_ThroughHole:D_P600_R-6_P12.70mm_Horizontal
-F1 F2 ;2;15A;Fuse_Holders_and_Fuses:Fuse_SMD1206_HandSoldering
-P1 ;1;Load;VCS_library:TerminalBlock_Screw_2pol
-P2 ;1;LI_balancer;Pin_Headers:Pin_Header_Straight_1x03_Pitch2.54mm
-P3 ;1;PV;VCS_library:TerminalBlock_Screw_2pol
-P4 ;1;Extra;Pin_Headers:Pin_Header_Straight_1x07_Pitch2.54mm
-P5 ;1;LI;VCS_library:TerminalBlock_Screw_2pol
-P6 ;1;LA;VCS_library:TerminalBlock_Screw_2pol
-Q1 Q10 Q6 Q8 ;4;MMBT3904;TO_SOT_Packages_SMD:SOT-23
-Q12 Q13 ;2;STL60P4LLF6;powerFLAT:powerFLAT_5x6_5..8com
-Q11 Q2 Q4 Q9 ;4;IPD90P04P4L-04;TO_SOT_Packages_SMD:TO-252-3_TabPin2
-Q3 Q5 ;2;RQ3E100BNTB;bachelorSMDs:HSMT-8
-Q7 ;1;BSS138;TO_SOT_Packages_SMD:SOT-23
-R15 R21 R29 R34 R43 R47 ;6;4.7k;Resistors_SMD:R_0603_HandSoldering
-R16 R17 R32 R44 ;4;R005;Resistors_SMD:R_1206_HandSoldering
-R10 R14 R18 R2 R3 R4 R5 R6 ;8;100Ohm;Resistors_SMD:R_0603_HandSoldering
-R19 R20 R31 R36 R45 R46 ;6;220k;Resistors_SMD:R_0603_HandSoldering
-R22 R28 R33 ;3;1M;Resistors_SMD:R_0603_HandSoldering
-R1 R11 R13 R23 R24 R25 R26 R27 R38 R48 R49 ;11;10k;Resistors_SMD:R_0603_HandSoldering
-R35 R39 R41 R7 R9 ;5;100k;Resistors_SMD:R_0603_HandSoldering
-R12 R30 R37 ;3;47k;Resistors_SMD:R_0603_HandSoldering
-R40 ;1;2.2k;Resistors_SMD:R_0603_HandSoldering
-R42 R8 ;2;33k;Resistors_SMD:R_0603_HandSoldering
-U1 U4 ;2;LM358D;SMD_Packages:SOIC-8-N
-U2 ;1;bq76920;SMD_Packages:SSOP-20
-U3 ;1;cd4051;SMD_Packages:SO-16-N
+Reference, Quantity, Value, Footprint, Datasheet
+AU1 ,1,Uno Layout,Arduinos:ARDUINO_SHIELD_bigger_holes_no_outline,
+C1 C2 C3 C4 C6 C7 ,6,1Âµ,Capacitors_SMD:C_0603_HandSoldering,
+C11 C9 ,2,10Âµ,Capacitors_ThroughHole:CP_Radial_D5.0mm_P2.00mm,
+C10 C5 C8 ,3,0.1Âµ,Capacitors_SMD:C_0603_HandSoldering,
+D2 ,1,1N4148-T,Diodes_ThroughHole:D_DO-35_SOD27_P10.16mm_Horizontal,
+D3 ,1,VSB2045Y-M3/54,Diodes_ThroughHole:D_P600_R-6_P12.70mm_Horizontal,
+F1 F2 ,2,15A,Fuse_Holders_and_Fuses:Fuse_SMD1206_HandSoldering,
+P1 ,1,Load,VCS_library:TerminalBlock_Screw_2pol,
+P2 ,1,LI_balancer,Pin_Headers:Pin_Header_Straight_1x03_Pitch2.54mm,
+P3 ,1,PV,VCS_library:TerminalBlock_Screw_2pol,
+P4 ,1,Extra,Pin_Headers:Pin_Header_Straight_1x05_Pitch2.54mm,
+P5 ,1,LI,VCS_library:TerminalBlock_Screw_2pol,
+P6 ,1,LA,VCS_library:TerminalBlock_Screw_2pol,
+P7 ,1,FTDI,Pin_Headers:Pin_Header_Straight_1x06_Pitch2.54mm,
+Q1 Q10 Q3 Q6 Q7 Q8 ,6,MMBT3904,TO_SOT_Packages_SMD:SOT-23,
+Q12 Q13 ,2,STL60P4LLF6,bachelorSMDs:powerFLAT_5x6_5..8com,
+Q15 Q16 ,2,BSS138,TO_SOT_Packages_SMD:SOT-23,
+Q11 Q14 Q2 Q4 Q5 Q9 ,6,IPD90P04P4L-04,TO_SOT_Packages_SMD:TO-252-3_TabPin2,
+R15 R21 R29 R34 R43 R47 ,6,4.7k,Resistors_SMD:R_0603_HandSoldering,
+R16 R17 R32 R44 ,4,R005,Resistors_SMD:R_1206_HandSoldering,
+R10 R14 R18 R2 R3 R4 R5 R6 ,8,100,Resistors_SMD:R_0603_HandSoldering,
+R19 R20 R31 R36 R45 R46 ,6,220k,Resistors_SMD:R_0603_HandSoldering,
+R1 R11 R13 R22 R23 R24 R25 R26 R27 R33 R38 R48 R49 R53 R54 R55 R56 ,17,10k,Resistors_SMD:R_0603_HandSoldering,
+R28 R35 R39 R41 R51 R7 R9 ,7,100k,Resistors_SMD:R_0603_HandSoldering,
+R12 R30 R37 R50 R52 ,5,47k,Resistors_SMD:R_0603_HandSoldering,
+R40 ,1,2.2k,Resistors_SMD:R_0603_HandSoldering,
+R42 R8 ,2,33k,Resistors_SMD:R_0603_HandSoldering,
+U1 U4 U5 ,3,LM358D,SMD_Packages:SOIC-8-N,
+U2 ,1,bq76920,SMD_Packages:SSOP-20,
+U3 ,1,cd4051,SMD_Packages:SO-16-N,
