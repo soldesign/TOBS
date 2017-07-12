@@ -9,6 +9,10 @@ unsigned long lastswitch = 0;
 const int PRINT_INTERVAL = 500;
 unsigned long led_lighttime = 1000; //turn on led for 1 sec on startup
 
+//--------BATTERY PARAMETERS------------
+const double LA_CAPACITY = 2.3; //in Ah
+const double LI_CAPACITY = 1.2	//in Ah
+
 //--------protection ratings------------
 //LI handeled by balancer
 const double LA_I_MAX_CHARGE = 5000;	//5A 
@@ -39,17 +43,20 @@ const double TEMPERATURE_FACTOR  = 0.2504;
 const double TEMPERATURE_SUMMAND = -20.51;
 
 const double OWN_CONSUMPTION = 20.0;
+
 //--------charge protcoll values----------
-//const double V_ABS = 14650; //absorption voltage
-const double V_ABS = 12100; //for testing
+const double V_ABS = 14650; //absorption voltage
 const double V_EQU = 15500; //equalization voltage
-//const double V_FLT = 13250; //float voltage
-const double V_FLT = 12000; //for testing
+const double V_FLT = 13250; //float voltage
 const double LA_I_MIN_ABSORP = 20; // C-rate/100
 const double PV_VOLTAGE_THRESHOLD = 100; //100mV PV v must be higher then actual battery voltage
 //for testing some values
-double la_soc = 80;
+double la_soc = 98;
 double li_soc = 98;
+
+double la_i_history[10] = {0,0,0,0,0,0,0,0,0,0};
+
+const int SOC_CALC_INTERVAL = 1000; //every second
 
 //---------LA state definitions-------------
 const byte LA_IDLE = 0;
@@ -63,8 +70,8 @@ const byte LA_FLOAT = 6;
 //---------LI state definitions-------------
 const byte LI_IDLE = 0;
 const byte LI_DISCHARGE = 1;
-const byte LI_LOWDISCON = 2;
-const byte LI_CHARGE = 3;
+const byte LI_CHARGE = 2;
+const byte LI_LOWDISCON = 3;
 
 //---------LD & PV state definitions-------------
 const bool LD_OFF = 0;
@@ -75,8 +82,8 @@ const bool PV_ON = 1;
 
 //---------System state definitions-------------
 const byte SYS_IDLE = 0;
-const byte SYS_CHARGE = 1;
-const byte SYS_DISCHARGE = 2;
+const byte SYS_DISCHARGE = 1;
+const byte SYS_CHARGE = 2;
 
 const double SYS_IDLE_THRESHOLD = 30; //+-20mA don't count as charge or discharge THIS CAN NOT BE SMALLER THAN LA_I_MIN_ABSORP
 
@@ -135,6 +142,7 @@ double la_v = 0;
 double la_i = 0;
 double li_v = 0;
 double li_i = 0;
+double la_i_average = 0;
 double pv_v = 0;
 double pv_i = 0;
 double ld_i = 0;
@@ -147,6 +155,7 @@ bool multiplex_state_a = 0;
 bool multiplex_state_b = 0;
 bool multiplex_state_c = 0;
 unsigned long lastprint = 0;
+unsigned long last_soc = 0;
 
 //-----------------objects------------------
 bq769x0 BMS(bq76920, BMS_I2C_ADDRESS);    // balancer object BMS = battery management system
@@ -185,6 +194,8 @@ void setup() {
 	digitalWrite(PV_SW_PIN, LOW); //PV off
 	digitalWrite(LD_SW_PIN, LOW); //LD off
 
+	measure();
+	guess_soc();
 }
 
 void loop() {
@@ -210,6 +221,12 @@ void loop() {
 	// Serial.println(duty_cycle);
 }
 
+void guess_soc(){
+	la_soc = 0.087 * la_v - 1000; // taken from "Battery management for an off-grid PV system using flooded lead-acid batteries"
+	
+	last_soc = millis();
+}
+
 void measure(){
 	la_v = get_value(1);
 	la_i = -1 * get_value(2);
@@ -229,6 +246,8 @@ void measure(){
 	}	
 
 	temperature = get_temperature();
+
+	update_la_history();
 }
 
 double get_value(byte measurepoint){
@@ -324,6 +343,22 @@ double get_temperature(){
  	return temp_value;
 }
 
+void update_la_history(){
+	//average of last 10 la_i, needed for comparing to minimum current threshold at charge protocol
+	for(int i = 0; i<9; i++){
+		la_i_history[i] = la_i_history[i+1];
+	}
+	
+	la_i_history[9] = la_i;
+	
+	la_i_average = 0;
+	for(int i = 0; i<10; i++){
+		la_i_average = la_i_average + la_i_history[i];
+	}
+	la_i_average = la_i_average / 10;
+
+}
+
 void protection(){
 	//LA battery protection
 	//overvoltage
@@ -353,7 +388,7 @@ void protection(){
 	}
 
 	//check if "current is lost somewhere"
-	measure_mistake = pv_i+la_i+li_i-ld_i + OWN_CONSUMPTION;
+	measure_mistake = -pv_i+la_i+li_i+ld_i + OWN_CONSUMPTION;
 	if(abs(measure_mistake) > SYS_MEASUREMENT_INACCURACY){
 		measure_error(measure_mistake);
 	}
@@ -438,9 +473,19 @@ void measure_error(double mistake){
 }
 
 void calculate_SOCs(){
-	//something for testing
-	la_soc = la_soc + la_i/9000;
-	li_soc = li_soc + li_i/9000;
+	if(millis() > last_soc + SOC_CALC_INTERVAL){
+		//simple coulomb counting
+ 		unsigned long timeinterval = (millis() - last_soc); 
+		double timeinterval_seconds = (double)timeinterval/1000; //in seconds
+		
+		double used_mAh_la = la_i*timeinterval_seconds/3600;
+		la_soc = la_soc + (used_mAh_la/(LA_CAPACITY*10));
+		
+		double used_mAh_li = li_i*timeinterval_seconds/3600;
+		li_soc = li_soc + (used_mAh_li/(LI_CAPACITY*10));
+
+		last_soc = millis();
+	}
 }
 
 void set_sys_state(){
@@ -587,14 +632,14 @@ void select_chargemode(){
 			la_state = LA_BULK;
 		}else{
 			if(la_state == LA_EQUALIZE){
-				if((la_i)<=LA_I_MIN_ABSORP){
+				if((la_i_average)<=LA_I_MIN_ABSORP){
 					la_soc = 100;
 					la_state = LA_FLOAT;
 				}else{
 					la_state = LA_EQUALIZE;
 				}
 			}else if(la_state == LA_ABSORP){
-				if(la_i<=LA_I_MIN_ABSORP){
+				if(la_i_average<=LA_I_MIN_ABSORP){
 					la_soc = 100;
 					la_state = LA_FLOAT;
 				}else{
@@ -726,7 +771,7 @@ void led_set(unsigned long shinetime){
 }
 
 void print_data(){
-	bool plotting_format = 1;
+	bool plotting_format = 0;
 	if(millis()> lastprint + PRINT_INTERVAL){ //only print if last print was PRINT_INTERVAL millisec ago
 		lastprint = millis();
 		
@@ -756,9 +801,9 @@ void print_data(){
 			Serial.println(ld_state);
 
 			Serial.print(F("la_soc: "));
-			Serial.println(la_soc);
+			Serial.println(la_soc, 3);
 			Serial.print(F("li_soc: "));
-			Serial.println(li_soc);
+			Serial.println(li_soc, 3);
 			
 
 			//measured data-------------------
@@ -767,6 +812,8 @@ void print_data(){
 			Serial.println(la_v);
 			Serial.print(F("la_i: "));
 			Serial.println(la_i);
+			Serial.print(F("la_i_average: "));
+			Serial.println(la_i_average);
 			Serial.print(F("li_v: "));
 			Serial.println(li_v);
 			Serial.print(F("li_i: "));
@@ -819,14 +866,16 @@ void print_data(){
 			Serial.print(F(" "));
 			Serial.print(ld_state);
 			Serial.print(F(" "));
-			Serial.print(la_soc);
+			Serial.print(la_soc, 3);
 			Serial.print(F(" "));
-			Serial.print(li_soc);
+			Serial.print(li_soc, 3);
 			Serial.print(F(" "));
 			//measured data-------------------
 			Serial.print(la_v);
 			Serial.print(F(" "));
 			Serial.print(la_i);
+			Serial.print(F(" "));
+			Serial.print(la_i_average);
 			Serial.print(F(" "));
 			Serial.print(li_v);
 			Serial.print(F(" "));
@@ -846,7 +895,7 @@ void print_data(){
 			// Serial.print(F(" "));
 			//other
 			
-			Serial.print(duty_cycle/255);
+			Serial.print(duty_cycle);
 			Serial.println();
 		}
 	}
