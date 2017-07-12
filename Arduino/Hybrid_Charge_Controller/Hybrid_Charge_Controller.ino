@@ -50,28 +50,27 @@ const double V_EQU = 15500; //equalization voltage
 const double V_FLT = 13250; //float voltage
 const double LA_I_MIN_ABSORP = 20; // C-rate/100
 const double PV_VOLTAGE_THRESHOLD = 100; //100mV PV v must be higher then actual battery voltage
+
 //for testing some values
 double la_soc = 98;
 double li_soc = 98;
 
 double la_i_history[10] = {0,0,0,0,0,0,0,0,0,0};
 
-const int SOC_CALC_INTERVAL = 1000; //every second
+const int SOC_CALC_INTERVAL = 1000; //to recalculate soc
 
 //---------LA state definitions-------------
 const byte LA_IDLE = 0;
 const byte LA_DISCHARGE = 1;
-const byte LA_LOWDISCON = 2;
-const byte LA_BULK = 3;
-const byte LA_ABSORP = 4;
-const byte LA_EQUALIZE = 5;
-const byte LA_FLOAT = 6;
+const byte LA_BULK = 2;
+const byte LA_ABSORP = 3;
+const byte LA_EQUALIZE = 4;
+const byte LA_FLOAT = 5;
 
 //---------LI state definitions-------------
 const byte LI_IDLE = 0;
 const byte LI_DISCHARGE = 1;
 const byte LI_CHARGE = 2;
-const byte LI_LOWDISCON = 3;
 
 //---------LD & PV state definitions-------------
 const bool LD_OFF = 0;
@@ -161,6 +160,19 @@ unsigned long last_soc = 0;
 bq769x0 BMS(bq76920, BMS_I2C_ADDRESS);    // balancer object BMS = battery management system
 
 void setup() {
+	//pinModes-----------------
+	pinMode(MULTIPLEX_PIN_A, OUTPUT);
+	pinMode(MULTIPLEX_PIN_B, OUTPUT);
+	pinMode(MULTIPLEX_PIN_C, OUTPUT);
+	pinMode(MULTIPLEX_PIN_OUT, INPUT);
+	pinMode(LA_SW_PIN, OUTPUT);
+	pinMode(PV_SW_PIN, OUTPUT);
+	pinMode(LD_SW_PIN, OUTPUT);
+	//initial pin writing----------
+	digitalWrite(LA_SW_PIN, LOW); //LA on
+	digitalWrite(PV_SW_PIN, LOW); //PV off
+	digitalWrite(LD_SW_PIN, LOW); //LD off
+
 	//miscelaneous--------------
 	TCCR1B = (TCCR1B & 0b11111000) | 0x05; //PWM frequency set to 60Hz
 	Serial.begin(115200);
@@ -176,30 +188,16 @@ void setup() {
   	BMS.setOvercurrentDischargeProtection(8000, 320);	// delay in ms
   	BMS.setCellUndervoltageProtection(2600, 2); 		// delay in s
   	BMS.setCellOvervoltageProtection(3650, 2);  		// delay in s
-
   	BMS.setBalancingThresholds(0, 3300, 20);  			// minIdleTime_min, minCellV_mV, maxVoltageDiff_mV
   	BMS.setIdleCurrentThreshold(100);					// 
   	BMS.enableAutoBalancing();							//let balancer handle balancing
-
-	//pinModes-----------------
-	pinMode(MULTIPLEX_PIN_A, OUTPUT);
-	pinMode(MULTIPLEX_PIN_B, OUTPUT);
-	pinMode(MULTIPLEX_PIN_C, OUTPUT);
-	pinMode(MULTIPLEX_PIN_OUT, INPUT);
-	pinMode(LA_SW_PIN, OUTPUT);
-	pinMode(PV_SW_PIN, OUTPUT);
-	pinMode(LD_SW_PIN, OUTPUT);
-	//initial pin writing----------
-	digitalWrite(LA_SW_PIN, LOW); //LA on
-	digitalWrite(PV_SW_PIN, LOW); //PV off
-	digitalWrite(LD_SW_PIN, LOW); //LD off
-
+	
+  	//get both SOCs for the first time by getting voltages
 	measure();
 	guess_soc();
 }
 
 void loop() {
-	//some excluded for testing
 	measure();            	 	// read all sensor data
 	protection();				//software protection for all devices
 	BMS.update();  				// should be called at least every 250 ms
@@ -212,13 +210,6 @@ void loop() {
   	pv_control();				//duty cycle here
 	print_data();       	    // print to serial monitor
 	led_handler();				// turn led on or off
-
-	//PI tuning
-	// Serial.print(la_v);
-	// Serial.print(" ");
-	// Serial.print(la_state);
-	// Serial.print(" ");
-	// Serial.println(duty_cycle);
 }
 
 void guess_soc(){
@@ -229,13 +220,15 @@ void guess_soc(){
 
 void measure(){
 	la_v = get_value(1);
-	la_i = -1 * get_value(2);
+	la_i = -1 * get_value(2); // *-1 because defined like this
 	pv_v = get_value(3);
 	pv_i = get_value(4);
 	ld_i = get_value(5);
 	li_v = BMS.getBatteryVoltage();
+	temperature = get_temperature();
+	update_la_history();
 
-	//ausreißer problem
+	//there is a problem with spikes (+-6A) for li_i... this ignores spikes
 	double last_li_i = li_i;
 	li_i = BMS.getBatteryCurrent();
 	if(li_i > last_li_i + 1000){
@@ -244,10 +237,6 @@ void measure(){
 	if(li_i < last_li_i - 1000){
 		li_i = last_li_i;
 	}	
-
-	temperature = get_temperature();
-
-	update_la_history();
 }
 
 double get_value(byte measurepoint){
@@ -356,7 +345,6 @@ void update_la_history(){
 		la_i_average = la_i_average + la_i_history[i];
 	}
 	la_i_average = la_i_average / 10;
-
 }
 
 void protection(){
@@ -472,19 +460,24 @@ void measure_error(double mistake){
 	*/
 }
 
-void calculate_SOCs(){
-	if(millis() > last_soc + SOC_CALC_INTERVAL){
-		//simple coulomb counting
- 		unsigned long timeinterval = (millis() - last_soc); 
-		double timeinterval_seconds = (double)timeinterval/1000; //in seconds
+void calculate_SOCs(){ 		//simple coulomb counting
+	//do it about every second (values need to be big enough)
+	if(millis() > last_soc + SOC_CALC_INTERVAL){					
+		//time since last soc calculation in ms
+ 		unsigned long timeinterval = (millis() - last_soc); 	
+ 		//same in seconds	
+		double timeinterval_seconds = (double)timeinterval/1000; 	
 		
-		double used_mAh_la = la_i*timeinterval_seconds/3600;
-		la_soc = la_soc + (used_mAh_la/(LA_CAPACITY*10));
+		//used electric charge in mAh
+		double used_mAh_la = la_i*timeinterval_seconds/3600;		
+		la_soc = la_soc + (used_mAh_la/(LA_CAPACITY*10));			
 		
-		double used_mAh_li = li_i*timeinterval_seconds/3600;
+		//used electric charge in mAh
+		double used_mAh_li = li_i*timeinterval_seconds/3600;		
 		li_soc = li_soc + (used_mAh_li/(LI_CAPACITY*10));
 
-		last_soc = millis();
+		//for next round
+		last_soc = millis();										
 	}
 }
 
@@ -679,6 +672,8 @@ void execute_chargemode(){
 }
 
 void bulkmode(){
+	//excluded for testing (still needs tweaking)
+
 	//la current up to LA_I_MAX_CHARGE with PI controller
 	//i_pi = pi_controller(LA_I_MAX_CHARGE, la_i, I_KP, I_KI, I_DMIN, I_DO, i_pi);
 	//duty_cycle = i_pi.d*255;
