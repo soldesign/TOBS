@@ -11,7 +11,7 @@ unsigned long led_lighttime = 1000; //turn on led for 1 sec on startup
 
 //--------BATTERY PARAMETERS------------
 const double LA_CAPACITY = 2.3; //in Ah
-const double LI_CAPACITY = 1.2	//in Ah
+const double LI_CAPACITY = 1.2;	//in Ah
 
 //--------protection ratings------------
 //LI handeled by balancer
@@ -32,7 +32,6 @@ const double LA_I_SUMMAND = -7564.6633;
 
 const double PV_V_FACTOR  = 19.7805;
 const double PV_V_SUMMAND = 334.8203;
-
 const double PV_I_FACTOR  = 15.9332;
 const double PV_I_SUMMAND = -7855.5799;
 
@@ -53,7 +52,7 @@ const double PV_VOLTAGE_THRESHOLD = 100; //100mV PV v must be higher then actual
 
 //for testing some values
 double la_soc = 98;
-double li_soc = 98;
+double li_soc = 99.99;
 
 double la_i_history[10] = {0,0,0,0,0,0,0,0,0,0};
 
@@ -493,6 +492,7 @@ void set_sys_state(){
 }
 
 void select_battery(){
+	//load cuttof needs to be implemented here
 	switch(sys_state){
 		case SYS_IDLE:
 			next_battery = LI_BATTERY;
@@ -556,15 +556,15 @@ void switchto_battery(){
 	if(current_battery != next_battery){ //only if switch is needed
 		switch(next_battery){
 			case LA_BATTERY:
-				digitalWrite(LD_SW_PIN, LOW); 	//turn LOAD off
-				digitalWrite(LED_BTN_PIN, LOW); //turn LED off
+				digitalWrite(LD_SW_PIN, LOW); 		//turn LOAD off
+				digitalWrite(LED_BTN_PIN, LOW); 	//turn LED off
 				delay(100);
-				BMS.disableDischarging();		//turn LI on
+				BMS.disableDischarging();			//turn LI on
 				delay(10);
-				digitalWrite(LA_SW_PIN, LOW); 	//turn LA on
+				digitalWrite(LA_SW_PIN, LOW); 		//turn LA on
 				delay(100);
 				if(ld_state == LD_ON){
-					digitalWrite(LD_SW_PIN, HIGH); 	//turn LOAD on if its supposed to be on
+				digitalWrite(LD_SW_PIN, HIGH); 		//turn LOAD on if its supposed to be on
 				}
 			break;
 			
@@ -617,7 +617,7 @@ bool pv_power_available(){
 }
 
 void select_chargemode(){
-	//expanation of this is in the thesis
+	//explanation of this is in the thesis (flowchart)
 	if(la_state == LA_FLOAT){
 		la_state = LA_FLOAT;
 	}else{	
@@ -766,7 +766,7 @@ void led_set(unsigned long shinetime){
 }
 
 void print_data(){
-	bool plotting_format = 0;
+	bool plotting_format = 1;
 	if(millis()> lastprint + PRINT_INTERVAL){ //only print if last print was PRINT_INTERVAL millisec ago
 		lastprint = millis();
 		
