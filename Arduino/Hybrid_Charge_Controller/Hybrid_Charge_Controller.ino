@@ -587,15 +587,21 @@ void switchto_battery(){
 
 void charge_protocol(){
 	//only execute if PV power is available
+
 	if(pv_power_available()){
 		if(current_battery == LA_BATTERY){
 			pv_state = 1;
-			select_chargemode();
-			execute_chargemode();
+			if(sys_state == SYS_CHARGE){
+				select_chargemode();
+				execute_chargemode();
+			}
 		}else{
 			//LI_charging
 			pv_state = 1;
-			//li_state = LI_CHARGE; //this is not true if ld_i is grater than pv_i
+				if(sys_state == SYS_CHARGE){
+				li_state = LI_CHARGE;
+			}
+
 		}
 	}else{
 		pv_state = 0;
