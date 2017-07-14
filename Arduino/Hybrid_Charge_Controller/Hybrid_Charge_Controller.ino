@@ -83,7 +83,7 @@ const byte SYS_IDLE = 0;
 const byte SYS_DISCHARGE = 1;
 const byte SYS_CHARGE = 2;
 
-const double SYS_IDLE_THRESHOLD = 30; //+-20mA don't count as charge or discharge THIS CAN NOT BE SMALLER THAN LA_I_MIN_ABSORP
+const double SYS_IDLE_THRESHOLD = 30; //+-30mA don't count as charge or discharge THIS CAN NOT BE SMALLER THAN LA_I_MIN_ABSORP
 
 //---------state variables-------------
 byte la_state = 0;
@@ -93,7 +93,7 @@ bool ld_state = 1;
 byte sys_state = 0;
 
 //-----------switching parameters---------
-const double SWITCH_THRESHOLD = 200; //200mA discharge current
+const double SWITCH_THRESHOLD = 400; //200mA discharge current
 
 const bool LA_BATTERY = 0;
 const bool LI_BATTERY = 1;
@@ -595,7 +595,7 @@ void charge_protocol(){
 		}else{
 			//LI_charging
 			pv_state = 1;
-			li_state = LI_CHARGE;
+			//li_state = LI_CHARGE; //this is not true if ld_i is grater than pv_i
 		}
 	}else{
 		pv_state = 0;
