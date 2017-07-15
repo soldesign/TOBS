@@ -1,6 +1,5 @@
 //--------INCLUDES--------------
 #include <bq769x0.h>    // Library for Texas Instruments bq76920 battery management IC
-#include "HCC_structs.h" //all struct variable definitions
 #include <PID_v1.h>			//PID library
 
 //--------FOR TESTING--------------
@@ -50,7 +49,7 @@ const double OWN_CONSUMPTION = 20.0;
 const double V_ABS = 13300; 
 const double V_EQU = 15500; //equalization voltage
 const double V_FLT = 13250; //float voltage
-const double LA_I_MIN_ABSORP = 20; // C-rate/100
+const double LA_I_MIN_ABSORP = 200; // C-rate/100 !!!200 for testing usually 20!!!
 const double PV_VOLTAGE_THRESHOLD = 100; //100mV PV v must be higher then actual battery voltage
 
 //for testing some values
@@ -121,38 +120,32 @@ const byte LED_BTN_PIN = 5; //led and button pin
 const byte TEMPERATURE_PIN = 21; //A7
 
 //-----------PWM PI controller values-----------
-double Input = 13200;
-double duty_cycle = 255;
-double Setpoint = 0;
+double Input = 12600; 	//where the controller sets in for the first time
+double duty_cycle = 255;	//controller output
+double Setpoint = 0;		//is set later on.
 
-PID myPID(&Input, &duty_cycle, &Setpoint, 0.5,0.5,0.1, DIRECT);
+const double KD = 0;		//only PI needed.
 
-const double V_KP = 0.05; //p-factor
-const double V_KI = 0.1; //i-factor
-const double V_DMIN = 0;	   	//
-const double V_DO = 0.5; 	//
+const double V_KP = 0.2; 	//p-factor
+const double V_KI = 0.3; 	//i-factor
 
-const double I_KP = 0.05; //p-factor
-const double I_KI = 0.05; //i-factor
-const double I_DMIN = 0;	//
-const double I_DO = 0.5; 	//
-
-pi_vals v_pi = {0, 0};
-pi_vals i_pi = {0, 0};
+const double I_KP = 0.2; 	//p-factor
+const double I_KI = 0.3; 	//i-factor
 
 //-----------------measurement------------------
-const double SYS_MEASUREMENT_INACCURACY = 100; //100mA is acceptable
-const int NR_SAMPLES = 100;			//for measureing analog values
+const double SYS_MEASUREMENT_INACCURACY = 100; 	//100mA is acceptable for testing
+const int NR_SAMPLES = 100;						//for measureing analog values
 double la_v = 0;
 double la_i = 0;
 double li_v = 0;
 double li_i = 0;
-double la_i_average = 0;
+double la_i_average = 0;						//average of last 10 la_i's
 double pv_v = 0;
 double pv_i = 0;
 double ld_i = 0;
 double temperature = 0;
 double measure_mistake = 0;
+unsigned long last_li_measurement = 0;
 
 
 //-----------------other------------------
@@ -163,7 +156,8 @@ unsigned long lastprint = 0;
 unsigned long last_soc = 0;
 
 //-----------------objects------------------
-bq769x0 BMS(bq76920, BMS_I2C_ADDRESS);    // balancer object BMS = battery management system
+bq769x0 BMS(bq76920, BMS_I2C_ADDRESS);    							// balancer object BMS = battery management system
+PID myPID(&Input, &duty_cycle, &Setpoint, V_KP,V_KI, KD, DIRECT);		//PI - controller
 
 void setup() {
 	//pinModes-----------------
@@ -174,6 +168,7 @@ void setup() {
 	pinMode(LA_SW_PIN, OUTPUT);
 	pinMode(PV_SW_PIN, OUTPUT);
 	pinMode(LD_SW_PIN, OUTPUT);
+
 	//initial pin writing----------
 	digitalWrite(LA_SW_PIN, LOW); //LA on
 	digitalWrite(PV_SW_PIN, LOW); //PV off
@@ -182,7 +177,8 @@ void setup() {
 	//miscelaneous--------------
 	TCCR1B = (TCCR1B & 0b11111000) | 0x05; //PWM frequency set to 60Hz
 	Serial.begin(115200);
-	myPID.SetMode(AUTOMATIC);
+	
+
 	Serial.println(F("Startup..."));
 
 	//balancer setup
@@ -202,9 +198,12 @@ void setup() {
   	//get both SOCs for the first time by getting voltages
 	measure();
 	guess_soc();
+	Input = li_v;
+	myPID.SetMode(AUTOMATIC);				//start PI-controller
 }
 
 void loop() {
+	//soime excluded for testing
 	measure();            	 	// read all sensor data
 	protection();				//software protection for all devices
 	BMS.update();  				// should be called at least every 250 ms
@@ -214,10 +213,7 @@ void loop() {
 	switchto_battery();			// LA or LI
 	charge_protocol();      	// pwm charging of LA
 	load_control();				// load on/off
-	Input = la_v;
-	Setpoint = V_ABS;
-	myPID.Compute();
-  	pv_control();				// duty cycle here
+ 	pv_control();				// duty cycle here
 	print_data();       	    // print to serial monitor
 	led_handler();				// turn led on or off
 }
@@ -240,11 +236,16 @@ void measure(){
 
 	//there is a problem with spikes (+-6A) for li_i... this ignores spikes
 	double last_li_i = li_i;
+	Serial.println(li_i);
 	li_i = BMS.getBatteryCurrent();
-	if(li_i > last_li_i + 1000){
+	if(li_i > last_li_i + 100){
+		//Serial.print(F("SPIKE: "));
+		//Serial.println(li_i);
 		li_i = last_li_i;
 	}
-	if(li_i < last_li_i - 1000){
+	if(li_i < last_li_i - 100){
+		//Serial.print(F("SPIKE: "));
+		//Serial.println(li_i);
 		li_i = last_li_i;
 	}	
 }
@@ -531,7 +532,6 @@ void select_battery(){
 			}
 		break;
 	}
-	update_battery_state();
 	/*
 	//switch every 2 sec for testing
 	if(millis()> lastswitch + 2000){ 
@@ -543,24 +543,6 @@ void select_battery(){
 		}
 	}
 	*/
-}
-
-void update_battery_state(){
-	if(next_battery == LA_BATTERY){
-		li_state = LI_IDLE;
-		if(sys_state == SYS_IDLE & la_state != LA_ABSORP){
-			la_state = LA_IDLE;
-		}else if(sys_state == SYS_DISCHARGE){
-			la_state = LA_DISCHARGE;
-		}
-	}else{
-		la_state = LA_IDLE;
-		if(sys_state == SYS_IDLE){
-			li_state = LI_IDLE;
-		}else if(sys_state == SYS_DISCHARGE){
-			li_state = LI_DISCHARGE;
-		}
-	}
 }
 
 void switchto_battery(){
@@ -597,73 +579,73 @@ void switchto_battery(){
 }
 
 void charge_protocol(){
-	//only execute if PV power is available
+	//only execute if not discharging
 
-	if(pv_power_available()){
+	if(sys_state == SYS_CHARGE){
 		if(current_battery == LA_BATTERY){
-			pv_state = 1;
-			if(sys_state == SYS_CHARGE){
-				select_chargemode();
-				execute_chargemode();
-			}
+			execute_la_chargemode();
+			li_state = LI_IDLE;
 		}else{
-			//LI_charging
-			pv_state = 1;
-				if(sys_state == SYS_CHARGE){
-				li_state = LI_CHARGE;
-			}
-
-		}
-	}else{
-		pv_state = 0;
-		if(sys_state == SYS_IDLE){
+			execute_li_chargemode();
 			la_state = LA_IDLE;
-		}else if(sys_state == SYS_DISCHARGE){
-			la_state = LA_DISCHARGE;
 		}
-
+	}else if(sys_state == SYS_IDLE){
+			la_state = LA_IDLE;
+			li_state = LI_IDLE;
+	}else if(sys_state == SYS_DISCHARGE){
+		if(current_battery == LA_BATTERY){
+			la_state = LA_DISCHARGE;
+		}else{
+			li_state = LI_DISCHARGE;
+		}
 	}
 }
 
-bool pv_power_available(){
-	if(pv_v > active_bat_v() + PV_VOLTAGE_THRESHOLD){
-		return 1;
-	}else{
-		return 0;
-	}
-}
-
-void select_chargemode(){
+void execute_la_chargemode(){
 	//explanation of this is in the thesis (flowchart)
 	if(la_state == LA_FLOAT){
 		la_state = LA_FLOAT;
+		floatmode();
 	}else{	
 		if(la_v <= (V_ABS-100) & la_state != LA_ABSORP){
 			la_state = LA_BULK;
+			bulkmode();
 		}else{
 			if(la_state == LA_EQUALIZE){
 				if((la_i_average)<=LA_I_MIN_ABSORP){
 					la_soc = 100;
 					la_state = LA_FLOAT;
+					floatmode();
 				}else{
 					la_state = LA_EQUALIZE;
+					equalizemode();
 				}
 			}else if(la_state == LA_ABSORP){
 				if(la_i_average<=LA_I_MIN_ABSORP){
 					la_soc = 100;
 					la_state = LA_FLOAT;
+					floatmode();
 				}else{
 					la_state = LA_ABSORP;
+					absorpmode();
 				}
 			}else{
 				if(equalize_due()){
 					la_state = LA_EQUALIZE;
+					equalizemode();
 				}else{
 					la_state = LA_ABSORP;
+					absorpmode();
 				}
 			}
 		}
 	}
+}
+
+void execute_li_chargemode(){
+	li_state = LI_CHARGE;
+	Input = li_v;
+	Setpoint = 14000;	//for testing
 }
 
 bool equalize_due(){
@@ -671,51 +653,28 @@ bool equalize_due(){
 	return 0; //not due
 }
 
-void execute_chargemode(){
-	switch(la_state){
-		case LA_BULK:
-			bulkmode();
-		break;
-		case LA_ABSORP:
-			absorpmode();
-		break;
-		case LA_FLOAT:
-			floatmode();
-		break;
-		case LA_EQUALIZE:
-			equalizemode();
-		break;
-	}
-}
-
 void bulkmode(){
 	//excluded for testing (still needs tweaking)
-
 	//la current up to LA_I_MAX_CHARGE with PI controller
-	//i_pi = pi_controller(LA_I_MAX_CHARGE, la_i, I_KP, I_KI, I_DMIN, I_DO, i_pi);
-	//duty_cycle = i_pi.d*255;
-	duty_cycle = 255;
+	Setpoint = V_ABS;
 }
 
 void absorpmode(){
 	//la voltage limited to hold at V_ABS with PI controller
-	// v_pi = pi_controller(V_ABS, la_v, V_KP, V_KI, V_DMIN, V_DO, v_pi);
-	// duty_cycle = v_pi.d*255;
-
-
-	//myPID.Compute();
+	Input = la_v;
+	Setpoint = V_ABS;
 }
 
 void floatmode(){
 	//la voltage limited to hold at V_FLT with PI controller
-	v_pi = pi_controller(V_FLT, la_v, V_KP, V_KI, V_DMIN, V_DO, v_pi);
-	duty_cycle = v_pi.d*255;
+	Input = la_v;
+	Setpoint = V_FLT;
 }
 
 void equalizemode(){
 	// la voltage limited to hold at V_EQU with PI controller
-	v_pi = pi_controller(V_EQU, la_v, V_KP, V_KI, V_DMIN, V_DO, v_pi);
-	duty_cycle = v_pi.d*255;
+	Input = la_v;
+	Setpoint = V_EQU;
 }
 
 void load_control(){
@@ -727,8 +686,11 @@ void load_control(){
 }
 
 void pv_control(){
-	//only allow pv switch to open, if pv_state = 1
-	if(pv_state == 1){
+	
+	myPID.Compute();			//execute PI calculation, will alter duty_cycle if necessary
+	
+	//only allow pv switch to open, if pv_state = PV_ON which means no error
+	if(pv_state == PV_ON){
 		analogWrite(PV_SW_PIN,duty_cycle);	//apply duty cyle
 	}else{
 		digitalWrite(PV_SW_PIN, LOW); //turn off pv pin
@@ -751,23 +713,6 @@ double active_bat_i(){
 	}else{
 		return li_i;
 	}
-}
-
-pi_vals pi_controller(double setpoint, double process_variable, double kp, double ki, double dmin, double d_o, pi_vals output){
-	//d und sum_e sollten für die nächste runde gespeichert werden...
-	double e = setpoint/1000 - process_variable/1000;
-	//Serial.println(e);
-	if(output.d<1){
-		output.sum_e = output.sum_e + e;
-	}
-	output.d=d_o + kp*e + ki*output.sum_e;
-	if(output.d>=1){
-		output.d = 1;
-	}
-	if(output.d<dmin){
-		output.d = dmin;
-	}
-	return output;
 }
 
 void led_handler(){

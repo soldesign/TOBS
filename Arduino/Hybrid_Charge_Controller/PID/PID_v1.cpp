@@ -54,21 +54,26 @@ bool PID::Compute()
       /*Compute all the working error variables*/
 	  double input = *myInput;
       double error = *mySetpoint - input;
-      Serial.println(error);
-           ITerm+= (ki * error);
+      ITerm+= (ki * error);
+
+  //Serial.println(ITerm);
+
       if(ITerm > outMax) ITerm= outMax;
       else if(ITerm < outMin) ITerm= outMin;
-      Serial.println(ITerm);
+
+      
+
       double dInput = (input - lastInput);
-    Serial.println(dInput);
+
+    //Serial.println(dInput);
+
       /*Compute PID Output*/
       double output = kp * error + ITerm- kd * dInput;
       
 	  if(output > outMax) output = outMax;
       else if(output < outMin) output = outMin;
      	  *myOutput = output;
-	     Serial.println(output);
-       Serial.println();
+       //Serial.println();
       /*Remember some variables for next time*/
       lastInput = input;
       lastTime = now;
