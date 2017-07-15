@@ -1,6 +1,7 @@
 //--------INCLUDES--------------
 #include <bq769x0.h>    // Library for Texas Instruments bq76920 battery management IC
 #include "HCC_structs.h" //all struct variable definitions
+#include <PID_v1.h>			//PID library
 
 //--------FOR TESTING--------------
 unsigned long lastswitch = 0;
@@ -44,7 +45,9 @@ const double TEMPERATURE_SUMMAND = -20.51;
 const double OWN_CONSUMPTION = 20.0;
 
 //--------charge protcoll values----------
-const double V_ABS = 14650; //absorption voltage
+//for testing
+//const double V_ABS = 14650; //absorption voltage
+const double V_ABS = 13300; 
 const double V_EQU = 15500; //equalization voltage
 const double V_FLT = 13250; //float voltage
 const double LA_I_MIN_ABSORP = 20; // C-rate/100
@@ -118,6 +121,12 @@ const byte LED_BTN_PIN = 5; //led and button pin
 const byte TEMPERATURE_PIN = 21; //A7
 
 //-----------PWM PI controller values-----------
+double Input = 13200;
+double duty_cycle = 255;
+double Setpoint = 0;
+
+PID myPID(&Input, &duty_cycle, &Setpoint, 0.5,0.5,0.1, DIRECT);
+
 const double V_KP = 0.05; //p-factor
 const double V_KI = 0.1; //i-factor
 const double V_DMIN = 0;	   	//
@@ -130,8 +139,6 @@ const double I_DO = 0.5; 	//
 
 pi_vals v_pi = {0, 0};
 pi_vals i_pi = {0, 0};
-
-double duty_cycle = 255;
 
 //-----------------measurement------------------
 const double SYS_MEASUREMENT_INACCURACY = 100; //100mA is acceptable
@@ -175,6 +182,7 @@ void setup() {
 	//miscelaneous--------------
 	TCCR1B = (TCCR1B & 0b11111000) | 0x05; //PWM frequency set to 60Hz
 	Serial.begin(115200);
+	myPID.SetMode(AUTOMATIC);
 	Serial.println(F("Startup..."));
 
 	//balancer setup
@@ -206,7 +214,10 @@ void loop() {
 	switchto_battery();			// LA or LI
 	charge_protocol();      	// pwm charging of LA
 	load_control();				// load on/off
-  	pv_control();				//duty cycle here
+	Input = la_v;
+	Setpoint = V_ABS;
+	myPID.Compute();
+  	pv_control();				// duty cycle here
 	print_data();       	    // print to serial monitor
 	led_handler();				// turn led on or off
 }
@@ -688,8 +699,11 @@ void bulkmode(){
 
 void absorpmode(){
 	//la voltage limited to hold at V_ABS with PI controller
-	v_pi = pi_controller(V_ABS, la_v, V_KP, V_KI, V_DMIN, V_DO, v_pi);
-	duty_cycle = v_pi.d*255;
+	// v_pi = pi_controller(V_ABS, la_v, V_KP, V_KI, V_DMIN, V_DO, v_pi);
+	// duty_cycle = v_pi.d*255;
+
+
+	//myPID.Compute();
 }
 
 void floatmode(){
