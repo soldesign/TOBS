@@ -234,16 +234,18 @@ void measure(){
 	temperature = get_temperature();
 	update_la_history();
 
-	//there is a problem with spikes (+-6A) for li_i... this ignores spikes
+	//there is a problem with spikes (up to +-6A) for li_i... this ignores spikes
 	double last_li_i = li_i;
-	Serial.println(li_i);
+	if(li_i > last_li_i + 30 || li_i < last_li_i - 30){
+		Serial.println(li_i);	//print if small spike
+	}
 	li_i = BMS.getBatteryCurrent();
-	if(li_i > last_li_i + 100){
+	if(li_i > last_li_i + 1000){
 		//Serial.print(F("SPIKE: "));
 		//Serial.println(li_i);
 		li_i = last_li_i;
 	}
-	if(li_i < last_li_i - 100){
+	if(li_i < last_li_i - 1000){
 		//Serial.print(F("SPIKE: "));
 		//Serial.println(li_i);
 		li_i = last_li_i;
@@ -483,12 +485,16 @@ void calculate_SOCs(){ 		//simple coulomb counting
 		double used_mAh_la = la_i*timeinterval_seconds/3600;		
 		la_soc = la_soc + (used_mAh_la/(LA_CAPACITY*10));			
 		
+		//only change LI_SOC if not in idle mode-> spikes were causing hughe differences
+		if(li_state != LI_IDLE){
 		//used electric charge in mAh
 		double used_mAh_li = li_i*timeinterval_seconds/3600;		
 		li_soc = li_soc + (used_mAh_li/(LI_CAPACITY*10));
-
 		//for next round
-		last_soc = millis();										
+		last_soc = millis();
+		return;
+		}
+		last_soc = millis();								
 	}
 }
 
@@ -612,7 +618,7 @@ void execute_la_chargemode(){
 			bulkmode();
 		}else{
 			if(la_state == LA_EQUALIZE){
-				if((la_i_average)<=LA_I_MIN_ABSORP){
+				if(la_i_average<=LA_I_MIN_ABSORP & duty_cycle < 200){ //added duty cycle otherwise unwanted execution
 					la_soc = 100;
 					la_state = LA_FLOAT;
 					floatmode();
@@ -621,7 +627,7 @@ void execute_la_chargemode(){
 					equalizemode();
 				}
 			}else if(la_state == LA_ABSORP){
-				if(la_i_average<=LA_I_MIN_ABSORP){
+				if(la_i_average<=LA_I_MIN_ABSORP & duty_cycle < 200){//added duty cycle otherwise unwanted execution
 					la_soc = 100;
 					la_state = LA_FLOAT;
 					floatmode();
