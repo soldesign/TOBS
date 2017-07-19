@@ -2078,4 +2078,6 @@ Text Notes 1300 7350 0    60   ~ 0
 hier vielleicht 100?
 Text Notes 3625 4675 0    60   ~ 0
 muss größer sein für 25V
+Text Notes 4500 4775 0    60   ~ 0
+version 0 has 1k !!!!!
 $EndSCHEMATC

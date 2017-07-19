@@ -46,17 +46,17 @@ const double OWN_CONSUMPTION = 20.0;
 //--------charge protcoll values----------
 //for testing
 //const double V_ABS = 14650; //absorption voltage
-const double V_ABS = 13300; 
+const double V_ABS = 14650; 
 const double V_EQU = 15500; //equalization voltage
 const double V_FLT = 13250; //float voltage
-const double LA_I_MIN_ABSORP = 200; // C-rate/100 !!!200 for testing usually 20!!!
+const double LA_I_MIN_ABSORP = 20; // C-rate/100 !!!200 for testing usually 20!!!
 const double PV_VOLTAGE_THRESHOLD = 100; //100mV PV v must be higher then actual battery voltage
 
 //for testing some values
 double la_soc = 98;
 double li_soc = 99.99;
 
-double la_i_history[10] = {0,0,0,0,0,0,0,0,0,0};
+double la_i_history[10] = {0,0,0,0,0,0,0,0,0,0}; //stores older la_i's
 
 const int SOC_CALC_INTERVAL = 1000; //to recalculate soc
 
@@ -122,7 +122,7 @@ const byte TEMPERATURE_PIN = 21; //A7
 //-----------PWM PI controller values-----------
 double Input = 12600; 	//where the controller sets in for the first time
 double duty_cycle = 255;	//controller output
-double Setpoint = 0;		//is set later on.
+double Setpoint = V_ABS-100;		//is set later on.
 
 const double KD = 0;		//only PI needed.
 
@@ -216,6 +216,16 @@ void loop() {
  	pv_control();				// duty cycle here
 	print_data();       	    // print to serial monitor
 	led_handler();				// turn led on or off
+
+	//pid tuning
+	// Input = la_v;
+	// if(Serial.available() > 0){
+ //    	delay(10);
+ //    	double P = Serial.parseFloat();
+ //    	double I = Serial.parseFloat();
+ //    	double D = Serial.parseFloat();
+ //    	myPID.SetTunings(P, I, D);
+	// }
 }
 
 void guess_soc(){
@@ -296,7 +306,7 @@ void set_multiplexchannel(byte measurepoint){
 double read_average_value(){
 	//take one value every timestep and summ it up, divide it
 	double value = 0;
-    for (byte i = 0; i < NR_SAMPLES; i++) {
+    for (int i = 0; i < NR_SAMPLES; i++) {
     	value = value + analogRead(MULTIPLEX_PIN_OUT);
     	delayMicroseconds(50);
   	}
@@ -336,7 +346,7 @@ double transform_average_value(double temp_average_value, byte measurepoint){
 double get_temperature(){
 	//take one value every timestep and summ it up, divide it
 	double temp_value = 0;
-    for (byte i = 0; i < NR_SAMPLES; i++) {
+    for (int i = 0; i < NR_SAMPLES; i++) {
     	temp_value = temp_value + analogRead(TEMPERATURE_PIN);
     	delayMicroseconds(50);
   	}
@@ -505,7 +515,11 @@ void set_sys_state(){
 	}else if(pv_i <= ld_i - SYS_IDLE_THRESHOLD){
 		sys_state = SYS_DISCHARGE;
 	}else{
-		sys_state = SYS_IDLE;
+		//only go in IDLE if duty_cycle is not small, otherwise still charging
+		if(duty_cycle > 100){
+			sys_state = SYS_IDLE;
+		}else
+		sys_state = SYS_CHARGE;
 	}
 }
 

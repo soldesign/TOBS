@@ -657,7 +657,7 @@ L R R40
 U 1 1 58EE8414
 P 5000 4725
 F 0 "R40" V 5080 4725 50  0000 C CNN
-F 1 "2.2k" V 5000 4725 50  0000 C CNN
+F 1 "1k" V 5000 4725 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603_HandSoldering" V 4930 4725 50  0001 C CNN
 F 3 "" H 5000 4725 50  0000 C CNN
 	1    5000 4725
@@ -2076,8 +2076,4 @@ Wire Wire Line
 	2875 2900 3175 2900
 Text Notes 1300 7350 0    60   ~ 0
 hier vielleicht 100?
-Text Notes 3625 4675 0    60   ~ 0
-muss größer sein für 25V
-Text Notes 4500 4775 0    60   ~ 0
-version 0 has 1k !!!!!
 $EndSCHEMATC
